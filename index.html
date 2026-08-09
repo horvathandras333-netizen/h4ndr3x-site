@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>H4NDR3X — Drum &amp; Bass Producer</title>
+<meta name="description" content="H4NDR3X — drum &amp; bass producer. Rolling breaks, subterranean bass, machine-tight drums engineered for 3 AM. Listen on Spotify and YouTube.">
+<link rel="canonical" href="https://h4ndr3x.com/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="H4NDR3X — Drum &amp; Bass Producer">
+<meta property="og:description" content="Rolling breaks. Subterranean bass. Machine-tight drums, engineered for 3 AM.">
+<meta property="og:url" content="https://h4ndr3x.com/">
+<meta property="og:image" content="https://h4ndr3x.com/assets/h4ndr3x-portrait.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cg fill='%234AA8FF'%3E%3Crect x='12' y='28' width='5' height='20' rx='2'/%3E%3Crect x='21' y='18' width='5' height='30' rx='2' fill='%2366E7FF'/%3E%3Crect x='30' y='24' width='5' height='24' rx='2'/%3E%3Crect x='39' y='14' width='5' height='34' rx='2' fill='%2366E7FF'/%3E%3Crect x='48' y='30' width='5' height='18' rx='2'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; background: #050505; color: #ffffff; font-family: 'Space Grotesk', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  a { color: #ffffff; text-decoration: none; transition: color 0.3s ease; }
+  a:hover { color: #66E7FF; }
+  ::selection { background: #4AA8FF; color: #050505; }
+
+  @keyframes drift1 { 0%{transform:translate(0,0)} 50%{transform:translate(60px,-80px)} 100%{transform:translate(0,0)} }
+  @keyframes drift2 { 0%{transform:translate(0,0)} 50%{transform:translate(-90px,50px)} 100%{transform:translate(0,0)} }
+  @keyframes breathe { 0%,100%{opacity:0.35} 50%{opacity:0.7} }
+  @keyframes floatY { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+  @keyframes beam { 0%,100%{opacity:0.06;transform:rotate(18deg) translateX(0)} 50%{opacity:0.14;transform:rotate(18deg) translateX(60px)} }
+  @keyframes pulseRing { 0%{transform:scale(0.6);opacity:0.5} 100%{transform:scale(1.6);opacity:0} }
+  @keyframes eq { 0%,100%{transform:scaleY(0.3)} 50%{transform:scaleY(1)} }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes shimmer { 0%{background-position:-200% center} 100%{background-position:200% center} }
+
+  /* layout */
+  .section { position:relative; z-index:1; max-width:1360px; margin:0 auto; }
+
+  /* pills / links */
+  .pill { display:inline-flex; align-items:center; gap:8px; padding:13px 26px; border-radius:100px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.03); backdrop-filter:blur(10px); font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#B8C0CC; transition:border-color 0.3s ease,color 0.3s ease; }
+  .pill:hover { border-color:rgba(102,231,255,0.55); color:#fff; }
+  .pill-sm { padding:12px 24px; font-size:11px; letter-spacing:0.2em; }
+
+  /* buttons */
+  .btn { display:inline-flex; align-items:center; gap:10px; padding:16px 30px; border-radius:100px; font-weight:600; font-size:13px; letter-spacing:0.12em; text-transform:uppercase; color:#fff; border:0; cursor:pointer; font-family:inherit; }
+  .btn-sm { padding:13px 24px; font-size:12px; }
+  .btn-spotify { background:linear-gradient(135deg,#4AA8FF,#0B3D91); box-shadow:0 0 34px rgba(74,168,255,0.35); transition:box-shadow 0.4s ease, transform 0.4s ease; }
+  .btn-spotify:hover { box-shadow:0 0 54px rgba(74,168,255,0.6); transform:translateY(-2px); }
+  .btn-yt { background:rgba(255,255,255,0.04); backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.14); transition:border-color 0.4s ease, transform 0.4s ease; }
+  .btn-yt:hover { border-color:rgba(102,231,255,0.6); transform:translateY(-2px); }
+  .glow-btn:hover { box-shadow:0 0 60px rgba(74,168,255,0.6); }
+
+  /* equalizer bars */
+  .eq { display:flex; align-items:flex-end; gap:5px; }
+  .eq-bar { display:inline-block; width:3px; height:100%; border-radius:2px; transform-origin:bottom; transform:scaleY(0.35); }
+
+  /* release cards */
+  .rel-card { display:block; border-radius:22px; background:rgba(17,17,17,0.6); backdrop-filter:blur(16px); border:1px solid rgba(255,255,255,0.08); overflow:hidden; box-shadow:0 18px 50px rgba(0,0,0,0.45); cursor:pointer; transition:transform 0.5s cubic-bezier(0.22,1,0.36,1), box-shadow 0.5s ease, border-color 0.5s ease; }
+  .rel-card:hover, .rel-card:focus-visible { transform:translateY(-8px) rotateX(3deg) rotateY(-3deg); box-shadow:0 30px 70px rgba(0,0,0,0.6), 0 0 44px rgba(74,168,255,0.16); border-color:rgba(74,168,255,0.35); }
+  .rel-card:focus-visible { outline:2px solid #66E7FF; outline-offset:3px; }
+  .cover-wrap { position:relative; aspect-ratio:1/1; }
+  .cover-wrap img { width:100%; height:100%; object-fit:cover; display:block; }
+  .rel-meta { padding:20px 22px; display:flex; align-items:center; justify-content:space-between; gap:12px; }
+  .rel-title { font-weight:600; font-size:16px; letter-spacing:0.04em; }
+  .rel-sub { font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#5a6474; margin-top:6px; }
+  .play-btn { width:38px; height:38px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; border:1px solid rgba(74,168,255,0.4); color:#66E7FF; font-size:13px; }
+
+  .preview-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.75); display:none; align-items:center; justify-content:center; }
+  .preview-overlay.is-open { display:flex; }
+  .preview-overlay iframe { display:block; border:0; position:absolute; inset:0; }
+  .close-btn { position:absolute; top:10px; right:10px; z-index:10; width:32px; height:32px; border-radius:50%; background:rgba(0,0,0,0.7); border:1px solid rgba(255,255,255,0.3); color:#fff; font-size:16px; cursor:pointer; display:flex; align-items:center; justify-content:center; line-height:1; }
+
+  /* video tiles */
+  .vid-tile { position:relative; display:flex; align-items:center; justify-content:center; flex-direction:column; gap:14px; aspect-ratio:16/9; border-radius:22px; overflow:hidden; border:1px solid rgba(255,255,255,0.08); transition:border-color 0.4s ease,transform 0.4s ease; }
+  .vid-tile:hover, .vid-tile:focus-visible { border-color:rgba(74,168,255,0.5); transform:translateY(-4px); }
+  .vid-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(74,168,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(74,168,255,0.05) 1px,transparent 1px); background-size:44px 44px; }
+  .vid-play { width:64px; height:64px; border-radius:50%; background:rgba(5,5,5,0.6); backdrop-filter:blur(8px); border:1px solid rgba(102,231,255,0.45); display:flex; align-items:center; justify-content:center; color:#66E7FF; font-size:20px; position:relative; }
+  .vid-label { font-size:11px; letter-spacing:0.26em; text-transform:uppercase; color:#B8C0CC; position:relative; }
+
+  /* social icons */
+  .social-row { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
+  .social-icon { width:46px; height:46px; border-radius:50%; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.03); backdrop-filter:blur(10px); color:#B8C0CC; transition:border-color 0.3s ease, color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+  .social-icon:hover, .social-icon:focus-visible { border-color:rgba(102,231,255,0.55); color:#66E7FF; transform:translateY(-3px); box-shadow:0 0 26px rgba(74,168,255,0.3); }
+  .social-icon svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
+
+  @media (max-width: 720px) {
+    .hero-portrait { width:min(520px,96vw) !important; margin-top:0 !important; margin-bottom:-24vw !important; }
+    nav.h4nav { gap:16px !important; padding:12px 18px !important; max-width:calc(100vw - 24px); }
+    nav.h4nav .navlinks { gap:14px !important; font-size:10px !important; }
+    nav.h4nav .hide-mobile { display:none !important; }
+    .feat-grid { grid-template-columns: 1fr !important; }
+    .feat-copy { padding:32px 26px !important; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div style="position:relative;min-height:100vh;background:#050505;">
+
+  <!-- ambient background (decorative) -->
+  <div aria-hidden="true" style="position:fixed;inset:0;pointer-events:none;z-index:0;">
+    <div style="position:absolute;top:-25%;left:-15%;width:70vw;height:70vw;background:radial-gradient(circle,rgba(11,61,145,0.32),transparent 65%);filter:blur(60px);animation:drift1 26s ease-in-out infinite;"></div>
+    <div style="position:absolute;bottom:-30%;right:-20%;width:80vw;height:80vw;background:radial-gradient(circle,rgba(74,168,255,0.14),transparent 60%);filter:blur(80px);animation:drift2 34s ease-in-out infinite;"></div>
+    <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(74,168,255,0.045) 1px,transparent 1px),linear-gradient(90deg,rgba(74,168,255,0.045) 1px,transparent 1px);background-size:72px 72px;"></div>
+    <div style="position:absolute;top:-10%;left:30%;width:220px;height:130vh;background:linear-gradient(180deg,transparent,rgba(102,231,255,0.5),transparent);filter:blur(50px);animation:beam 14s ease-in-out infinite;"></div>
+    <div style="position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,0.012) 0 1px,transparent 1px 4px);"></div>
+    <div style="position:absolute;top:20%;left:12%;width:4px;height:4px;border-radius:50%;background:#66E7FF;filter:blur(1px);animation:floatY 7s ease-in-out infinite, breathe 5s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:64%;left:78%;width:3px;height:3px;border-radius:50%;background:#4AA8FF;filter:blur(1px);animation:floatY 9s ease-in-out 1s infinite, breathe 6s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:38%;left:55%;width:2px;height:2px;border-radius:50%;background:#ffffff;filter:blur(0.5px);animation:floatY 11s ease-in-out 2s infinite, breathe 7s ease-in-out infinite;"></div>
+    <div style="position:absolute;top:80%;left:30%;width:3px;height:3px;border-radius:50%;background:#66E7FF;filter:blur(1px);animation:floatY 8s ease-in-out 3s infinite, breathe 5.5s ease-in-out infinite;"></div>
+  </div>
+
+  <!-- glass nav -->
+  <nav class="h4nav" style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:34px;padding:14px 30px;border-radius:100px;background:rgba(10,12,18,0.55);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.08);box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+    <a href="#top" style="font-weight:700;font-size:15px;letter-spacing:0.22em;">H4NDR3X</a>
+    <div class="navlinks" style="display:flex;align-items:center;gap:26px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#B8C0CC;">
+      <a href="#releases" style="color:#B8C0CC;">Releases</a>
+      <a href="#tracks" style="color:#B8C0CC;">Tracks</a>
+      <a href="#videos" class="hide-mobile" style="color:#B8C0CC;">Videos</a>
+      <a href="#about" style="color:#B8C0CC;">About</a>
+      <a href="#contact" style="color:#B8C0CC;">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <header id="top" style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 32px 80px;overflow:hidden;">
+    <div aria-hidden="true" style="position:absolute;top:50%;left:50%;width:520px;height:520px;margin:-260px 0 0 -260px;border:1px solid rgba(74,168,255,0.18);border-radius:50%;animation:pulseRing 5s ease-out infinite;"></div>
+    <div aria-hidden="true" style="position:absolute;top:50%;left:50%;width:520px;height:520px;margin:-260px 0 0 -260px;border:1px solid rgba(102,231,255,0.12);border-radius:50%;animation:pulseRing 5s ease-out 2.5s infinite;"></div>
+
+    <div class="hero-portrait" style="position:relative;width:min(880px,90vw);aspect-ratio:1/1;margin-top:-20px;margin-bottom:-260px;pointer-events:none;animation:fadeUp 1.4s ease both;">
+      <div style="position:absolute;inset:0;filter:grayscale(0.45) contrast(1.08);opacity:0.85;-webkit-mask-image:radial-gradient(ellipse 72% 70% at 50% 38%,rgba(0,0,0,1) 38%,rgba(0,0,0,0.5) 62%,transparent 80%);mask-image:radial-gradient(ellipse 72% 70% at 50% 38%,rgba(0,0,0,1) 38%,rgba(0,0,0,0.5) 62%,transparent 80%);">
+        <img src="assets/h4ndr3x-portrait.webp" width="1402" height="1122" fetchpriority="high" alt="H4NDR3X portrait" style="width:100%;height:100%;object-fit:cover;object-position:50% 30%;display:block;">
+      </div>
+    </div>
+
+    <div style="position:relative;font-size:12px;letter-spacing:0.5em;text-transform:uppercase;color:#4AA8FF;margin-bottom:34px;animation:fadeUp 1.2s ease both;">Drum &amp; Bass — Producer</div>
+
+    <h1 style="font-weight:700;font-size:clamp(58px,11vw,168px);line-height:0.9;letter-spacing:0.04em;margin:0;background:linear-gradient(110deg,#8a94a6 0%,#ffffff 25%,#c9d4e4 50%,#ffffff 75%,#8a94a6 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite, fadeUp 1.2s ease 0.15s both;">H4NDR3X</h1>
+
+    <p style="max-width:460px;font-size:16px;line-height:1.7;color:#B8C0CC;margin:36px 0 0;animation:fadeUp 1.2s ease 0.3s both;">
+      Rolling breaks. Subterranean bass. Machine-tight drums, engineered for 3 AM.
+    </p>
+
+    <div style="display:flex;gap:16px;margin-top:44px;animation:fadeUp 1.2s ease 0.45s both;flex-wrap:wrap;justify-content:center;">
+      <a href="https://open.spotify.com/artist/4HKwa55lGXawLWP4HIoaFa" target="_blank" rel="noopener" class="btn btn-spotify">▶ Listen on Spotify</a>
+      <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="btn btn-yt">YouTube</a>
+    </div>
+
+    <div id="hero-eq" class="eq" style="height:34px;margin-top:70px;opacity:0.7;" aria-hidden="true"></div>
+    <div style="font-size:10px;letter-spacing:0.4em;text-transform:uppercase;color:#5a6474;margin-top:16px;">Scroll</div>
+  </header>
+
+  <!-- ABOUT -->
+  <section id="about" class="section" style="padding:100px 32px 60px;">
+    <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;max-width:900px;margin:0 auto;">
+      <span style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#4AA8FF;">About</span>
+      <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;line-height:1.05;margin:0;">Engineered in the dark.<br>Built for the floor.</h2>
+      <p style="margin:0;color:#B8C0CC;font-size:17px;line-height:1.85;max-width:780px;">
+        H4NDR3X is a human-AI production project — drum &amp; bass with surgical precision, rolling breaks, subterranean low-end and atmospheres pulled from empty warehouses and late-night city air. Machines generate. H4NDR3X decides. Every release is mixed to move concrete.
+      </p>
+      <div style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
+        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">174</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">BPM</div></div>
+        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">8+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
+        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">2026</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Active</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LATEST RELEASES -->
+  <section id="releases" class="section" style="padding:120px 32px 60px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:60px;">
+      <h2 style="font-weight:700;font-size:clamp(34px,5vw,64px);letter-spacing:0.03em;margin:0;">Latest Releases</h2>
+      <span style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#5a6474;">174 BPM / 2026</span>
+    </div>
+
+    <!-- featured glass card -->
+    <div class="feat-grid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0;border-radius:24px;background:rgba(17,17,17,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 60px rgba(74,168,255,0.07);overflow:hidden;margin-bottom:28px;">
+      <div id="feat-cover" class="cover-wrap">
+        <img id="feat-img" src="" width="640" height="640" alt="" loading="lazy">
+        <div id="feat-preview" class="preview-overlay">
+          <iframe id="feat-iframe" title="Adrenaline — Spotify preview" src="" width="100%" height="100%" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" style="display:block;border:0;"></iframe>
+          <button onclick="closeFeatured()" class="close-btn" aria-label="Close preview">✕</button>
+        </div>
+      </div>
+      <div class="feat-copy" style="padding:56px;display:flex;flex-direction:column;justify-content:center;gap:22px;">
+        <span style="align-self:flex-start;padding:7px 16px;border-radius:100px;border:1px solid rgba(102,231,255,0.35);color:#66E7FF;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;">Latest — Single</span>
+        <h3 id="feat-title" style="font-weight:700;font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:0.02em;margin:0;"></h3>
+        <p id="feat-meta" style="margin:0;color:#B8C0CC;font-size:14px;letter-spacing:0.06em;"></p>
+        <div id="feat-eq" class="eq" style="height:36px;" aria-hidden="true"></div>
+        <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
+          <button onclick="playFeatured()" class="btn btn-sm btn-spotify" aria-label="Toggle Adrenaline preview">▶ Preview</button>
+          <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURED TRACKS / streaming -->
+  <section id="tracks" class="section" style="padding:100px 32px 60px;">
+    <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;margin:0 0 44px;">Featured Tracks</h2>
+    <div id="embed-shell" style="border-radius:24px;overflow:hidden;background:rgba(17,17,17,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);box-shadow:0 30px 80px rgba(0,0,0,0.5);">
+      <button id="load-embed" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;width:100%;height:380px;background:transparent;border:0;cursor:pointer;color:#fff;font-family:'Space Grotesk',sans-serif;">
+        <span class="glow-btn" aria-hidden="true" style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#4AA8FF,#0B3D91);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 0 44px rgba(74,168,255,0.4);">▶</span>
+        <span style="font-size:13px;letter-spacing:0.26em;text-transform:uppercase;">Load the Spotify player</span>
+        <span style="font-size:11px;letter-spacing:0.14em;color:#5a6474;">Streams from open.spotify.com</span>
+      </button>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:26px;">
+      <a href="https://open.spotify.com/artist/4HKwa55lGXawLWP4HIoaFa" target="_blank" rel="noopener" class="pill">Spotify ↗</a>
+      <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="pill">YouTube ↗</a>
+    </div>
+  </section>
+
+  <!-- ALL RELEASES GRID -->
+  <section id="all-releases" class="section" style="padding:60px 32px 80px;">
+    <h2 style="font-weight:700;font-size:clamp(24px,3vw,40px);letter-spacing:0.03em;margin:0 0 12px;">All Releases</h2>
+    <p style="color:#5a6474;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 40px;">Click any card to preview · Opens Spotify player inline</p>
+    <div id="releases-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;perspective:1200px;"></div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos" class="section" style="padding:100px 32px 60px;">
+    <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:44px;">
+      <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;margin:0;">Visuals</h2>
+      <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#4AA8FF;">All videos ↗</a>
+    </div>
+    <p style="color:#B8C0CC;font-size:14px;margin:0 0 32px;">Click a tile to play. Videos open on YouTube in a new tab.</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
+      <!-- Video tile 1 — replace href with a specific YouTube video URL, e.g. https://youtu.be/YOUR_VIDEO_ID -->
+      <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="vid-tile" style="background:linear-gradient(150deg,rgba(11,61,145,0.4),rgba(5,5,5,0.95));">
+        <span class="vid-grid" aria-hidden="true"></span>
+        <span class="vid-play" aria-hidden="true">▶</span>
+        <span class="vid-label">H4NDR3X on YouTube ↗</span>
+      </a>
+      <!-- Video tile 2 -->
+      <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="vid-tile" style="background:linear-gradient(210deg,rgba(102,231,255,0.12),rgba(5,5,5,0.95));">
+        <span class="vid-grid" aria-hidden="true"></span>
+        <span class="vid-play" aria-hidden="true">▶</span>
+        <span class="vid-label">New visuals — soon ↗</span>
+      </a>
+    </div>
+    <p style="color:#5a6474;font-size:11px;letter-spacing:0.12em;margin:24px 0 0;">
+      💡 To add real videos: paste your YouTube video URL into each tile's href attribute — e.g. https://youtu.be/YOUR_VIDEO_ID
+    </p>
+  </section>
+
+  <!-- NEXT / upcoming -->
+  <section class="section" style="padding:100px 32px 60px;">
+    <div style="border-radius:24px;border:1px solid rgba(74,168,255,0.22);background:linear-gradient(160deg,rgba(11,61,145,0.22),rgba(17,17,17,0.6));backdrop-filter:blur(20px);padding:70px 56px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px;box-shadow:0 0 80px rgba(74,168,255,0.08) inset;">
+      <div>
+        <span style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#66E7FF;">Next transmission</span>
+        <h2 style="font-weight:700;font-size:clamp(28px,3.6vw,46px);letter-spacing:0.03em;margin:16px 0 0;">New material in the works.</h2>
+        <p style="margin:14px 0 0;color:#B8C0CC;font-size:15px;">Follow on Spotify to hear it the second it drops.</p>
+      </div>
+      <a href="https://open.spotify.com/artist/4HKwa55lGXawLWP4HIoaFa" target="_blank" rel="noopener" class="btn glow-btn btn-spotify" style="padding:17px 34px;font-size:13px;letter-spacing:0.14em;">Follow on Spotify</a>
+    </div>
+  </section>
+
+  <!-- CONTACT / FOOTER -->
+  <footer id="contact" style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.07);margin-top:60px;padding:90px 32px 60px;">
+    <div style="max-width:1360px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:30px;">
+      <div style="font-weight:700;font-size:clamp(40px,7vw,96px);letter-spacing:0.06em;line-height:0.9;background:linear-gradient(110deg,#8a94a6,#ffffff,#8a94a6);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 10s linear infinite;">H4NDR3X</div>
+      <div class="social-row">
+        <a href="https://open.spotify.com/artist/4HKwa55lGXawLWP4HIoaFa" target="_blank" rel="noopener" class="social-icon" aria-label="H4NDR3X on Spotify">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M7 10c3-1.2 7-1.2 10 0"></path><path d="M7.5 13c2.6-1 6.4-1 9 0"></path><path d="M8 16c2-.7 5-.7 7 0"></path></svg>
+        </a>
+        <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="social-icon" aria-label="H4NDR3X on YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="4"></rect><path d="M10 9l6 3-6 3V9z" fill="currentColor" stroke="none"></path></svg>
+        </a>
+        <a href="https://www.instagram.com/h4ndr3x.official/" target="_blank" rel="noopener" class="social-icon" aria-label="H4NDR3X on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.3" cy="6.7" r="1" fill="currentColor" stroke="none"></circle></svg>
+        </a>
+        <a href="https://soundcloud.com/handrex" target="_blank" rel="noopener" class="social-icon" aria-label="H4NDR3X on SoundCloud">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 17a3.5 3.5 0 0 1 0-7 5 5 0 0 1 9.6-1.6A3.8 3.8 0 0 1 16.5 17h-10z"></path><path d="M6.5 12.5V17M9 10.5V17M11.5 9.5V17"></path></svg>
+        </a>
+      </div>
+      <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,rgba(74,168,255,0.35),transparent);margin-top:20px;"></div>
+      <div style="font-size:11px;letter-spacing:0.16em;color:#5a6474;">© <span id="year"></span> H4NDR3X — ALL RIGHTS RESERVED</div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ---- Single source of truth for releases (cover, title, meta, Spotify album id) ----
+  var FEATURED = { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026 · Drum & Bass' };
+  var RELEASES = [
+    { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026' },
+    { id: '5Jq7sgYSXUt7v03M2wqKc9', cover: 'assets/cover-my-foundation.jpg', title: 'MY FOUNDATION', meta: 'Single — 2026 · Radio Edit' },
+    { id: '3LTnw7cPkwEOA6KqZA2FCT', cover: 'assets/cover-the-pressure.jpg', title: 'THE PRESSURE', meta: 'Single — 2026' },
+    { id: '4NiHpPeBmp0XhXg4OK9Vdh', cover: 'assets/cover-neon-detonate.jpg', title: 'NEON DETONATE', meta: 'Single — 2026' },
+    { id: '15QydJzzCwdzPFM0DAAWrx', cover: 'assets/cover-finally-breathing.jpg', title: 'FINALLY BREATHING', meta: 'Single — 2026' },
+    { id: '4pjNdt1CHWmZ5fybRno67Q', cover: 'assets/cover-fearless.jpg', title: 'FEARLESS', meta: 'Single — 2026' },
+    { id: '5N2JPuFoprTtw9AqT3k4hO', cover: 'assets/cover-brassline.jpg', title: 'BRASSLINE', meta: 'Single — 2026 · Radio Edit' }
+  ];
+
+  // ---- Equalizer bars ----
+  function buildEqBars(container, color, count) {
+    var durations = [1.00, 1.44, 1.88, 1.22, 1.66];
+    var html = '';
+    for (var i = 0; i < count; i++) {
+      var accented = i % 4 === 0;
+      var animated = accented || i % 4 === 2;
+      var bg = accented ? color : 'rgba(184,192,204,0.25)';
+      var anim = animated ? 'animation:eq ' + durations[i % durations.length] + 's ease-in-out ' + (i * 0.14).toFixed(2) + 's infinite;' : '';
+      html += '<span class="eq-bar" style="background:' + bg + ';' + anim + '"></span>';
+    }
+    container.innerHTML = html;
+  }
+  buildEqBars(document.getElementById('hero-eq'), '#4AA8FF', 28);
+  buildEqBars(document.getElementById('feat-eq'), '#66E7FF', 30);
+
+  // ---- Featured release ----
+  document.getElementById('feat-img').src = FEATURED.cover;
+  document.getElementById('feat-img').alt = FEATURED.title + ' — cover art';
+  document.getElementById('feat-title').textContent = FEATURED.title;
+  document.getElementById('feat-meta').textContent = FEATURED.meta;
+
+  function playFeatured() {
+    var preview = document.getElementById('feat-preview');
+    var iframe = document.getElementById('feat-iframe');
+    if (preview.classList.contains('is-open')) {
+      preview.classList.remove('is-open');
+      iframe.src = '';
+    } else {
+      preview.classList.add('is-open');
+      iframe.src = 'https://open.spotify.com/embed/album/' + FEATURED.id + '?utm_source=generator&theme=0';
+    }
+  }
+  function closeFeatured() {
+    document.getElementById('feat-preview').classList.remove('is-open');
+    document.getElementById('feat-iframe').src = '';
+  }
+
+  // ---- All-releases grid (built from RELEASES so markup isn't duplicated per card) ----
+  var grid = document.getElementById('releases-grid');
+  RELEASES.forEach(function (release) {
+    var card = document.createElement('div');
+    card.className = 'rel-card';
+    card.setAttribute('role', 'button');
+    card.setAttribute('tabindex', '0');
+    card.setAttribute('aria-label', 'Preview ' + release.title);
+    card.innerHTML =
+      '<div class="cover-wrap">' +
+        '<img src="' + release.cover + '" width="640" height="640" alt="' + release.title + ' — cover art" loading="lazy">' +
+        '<div class="preview-overlay">' +
+          '<iframe title="' + release.title + ' — Spotify preview" src="" data-src="https://open.spotify.com/embed/album/' + release.id + '?utm_source=generator&theme=0" width="100%" height="100%" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"></iframe>' +
+          '<button class="close-btn" aria-label="Close preview">✕</button>' +
+        '</div>' +
+      '</div>' +
+      '<div class="rel-meta">' +
+        '<div><div class="rel-title">' + release.title + '</div><div class="rel-sub">' + release.meta + '</div></div>' +
+        '<span class="play-btn" aria-hidden="true">▶</span>' +
+      '</div>';
+
+    card.addEventListener('click', function () { playPreview(card); });
+    card.addEventListener('keydown', function (e) {
+      if (e.target === card && (e.key === 'Enter' || e.key === ' ')) {
+        e.preventDefault();
+        playPreview(card);
+      }
+    });
+    card.querySelector('.close-btn').addEventListener('click', function (e) {
+      e.stopPropagation();
+      closePreview(card);
+    });
+    grid.appendChild(card);
+  });
+
+  function playPreview(card) {
+    var overlay = card.querySelector('.preview-overlay');
+    var iframe = overlay.querySelector('iframe');
+    // Close any other open previews first
+    document.querySelectorAll('.preview-overlay.is-open').forEach(function (o) {
+      if (o !== overlay) {
+        o.classList.remove('is-open');
+        o.querySelector('iframe').src = '';
+        var otherCard = o.closest('.rel-card');
+        otherCard.querySelector('.play-btn').textContent = '▶';
+        otherCard.querySelector('.play-btn').style.background = '';
+      }
+    });
+    if (overlay.classList.contains('is-open')) {
+      closePreview(card);
+    } else {
+      overlay.classList.add('is-open');
+      iframe.src = iframe.dataset.src;
+      card.querySelector('.play-btn').textContent = '■';
+      card.querySelector('.play-btn').style.background = 'rgba(74,168,255,0.2)';
+    }
+  }
+  function closePreview(card) {
+    var overlay = card.querySelector('.preview-overlay');
+    overlay.classList.remove('is-open');
+    overlay.querySelector('iframe').src = '';
+    card.querySelector('.play-btn').textContent = '▶';
+    card.querySelector('.play-btn').style.background = '';
+  }
+
+  // ---- Spotify artist embed (load on click) ----
+  document.getElementById('load-embed').addEventListener('click', function () {
+    var shell = document.getElementById('embed-shell');
+    shell.innerHTML = '<iframe title="Spotify" src="https://open.spotify.com/embed/artist/4HKwa55lGXawLWP4HIoaFa?utm_source=generator&theme=0" width="100%" height="452" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy" style="display:block;border:0;"></iframe>';
+  });
+
+  // ---- Footer year ----
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
