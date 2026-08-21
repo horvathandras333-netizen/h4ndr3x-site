@@ -25,7 +25,8 @@ though a server is closer to how it behaves deployed.
 
 Release data lives in one place — the `FEATURED` and `RELEASES` arrays near the top
 of the `<script>` block in `index.html`. The featured card and the "All Releases"
-grid are both built from them, so adding a track means adding one object:
+grid are built from them, and every release opens a Spotify-backed detail dialog.
+Adding a track means adding one object:
 
 ```js
 { id: 'SPOTIFY_ALBUM_ID', cover: 'assets/cover-name.jpg', title: 'TITLE', meta: 'Single — 2026' }
@@ -34,15 +35,19 @@ grid are both built from them, so adding a track means adding one object:
 The `id` is the album ID from a Spotify share link:
 `open.spotify.com/album/<THIS_PART>`. Cover art goes in `assets/` as a square JPG.
 
-The Visuals section links to the channel's Videos page. When a specific video is
-ready to feature, change that link to its `https://youtu.be/VIDEO_ID` URL and update
-the tile label to match.
+The Visuals tile is driven by the `FEATURED_VIDEO` object. When a specific video is
+ready to feature, replace its `url` with the `https://youtu.be/VIDEO_ID` URL and
+update its `label`.
+
+The booking and mailing-list CTAs use `booking@h4ndr3x.com`; update those two
+`mailto:` links if you use a different inbox or add a dedicated mailing-list service.
 
 ## Deploying
 
-The `<link rel="canonical">` and Open Graph tags in `<head>` are set to
-`https://h4ndr3x.com/`. Hosting anywhere else means updating those four URLs,
-or search engines and link previews will keep pointing at the domain.
+The `<link rel="canonical">`, Open Graph tags and structured data in `<head>` are
+set to `https://h4ndr3x.com/`. Hosting anywhere else means updating those URLs,
+or search engines and link previews will keep pointing at the domain. The share
+image is `assets/og-h4ndr3x.jpg` (1200 × 630).
 
 ## Links
 

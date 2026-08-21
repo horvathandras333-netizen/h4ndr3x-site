@@ -10,12 +10,34 @@
 <meta property="og:title" content="H4NDR3X — Drum &amp; Bass Producer">
 <meta property="og:description" content="Rolling breaks. Subterranean bass. Machine-tight drums, engineered for 3 AM.">
 <meta property="og:url" content="https://h4ndr3x.com/">
-<meta property="og:image" content="https://h4ndr3x.com/assets/h4ndr3x-portrait.jpg">
+<meta property="og:image" content="https://h4ndr3x.com/assets/og-h4ndr3x.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="H4NDR3X — Drum &amp; Bass Producer">
+<meta name="twitter:description" content="Rolling breaks. Subterranean bass. Machine-tight drums, engineered for 3 AM.">
+<meta name="twitter:image" content="https://h4ndr3x.com/assets/og-h4ndr3x.jpg">
+<meta name="theme-color" content="#050505">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050505'/%3E%3Cg fill='%234AA8FF'%3E%3Crect x='12' y='28' width='5' height='20' rx='2'/%3E%3Crect x='21' y='18' width='5' height='30' rx='2' fill='%2366E7FF'/%3E%3Crect x='30' y='24' width='5' height='24' rx='2'/%3E%3Crect x='39' y='14' width='5' height='34' rx='2' fill='%2366E7FF'/%3E%3Crect x='48' y='30' width='5' height='18' rx='2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MusicGroup",
+  "name": "H4NDR3X",
+  "url": "https://h4ndr3x.com/",
+  "image": "https://h4ndr3x.com/assets/og-h4ndr3x.jpg",
+  "genre": "Drum and Bass",
+  "sameAs": [
+    "https://open.spotify.com/artist/4HKwa55lGXawLWP4HIoaFa",
+    "https://www.youtube.com/@H4NDR3X",
+    "https://www.instagram.com/h4ndr3x.official/",
+    "https://soundcloud.com/handrex"
+  ]
+}
+</script>
 <style>
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -84,22 +106,57 @@
   .social-icon:hover, .social-icon:focus-visible { border-color:rgba(102,231,255,0.55); color:#66E7FF; transform:translateY(-3px); box-shadow:0 0 26px rgba(74,168,255,0.3); }
   .social-icon svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 
+  /* brand, progressive navigation and release details */
+  .wordmark { display:inline-flex; align-items:center; gap:10px; font-weight:700; letter-spacing:0.22em; }
+  .wordmark::before { content:''; width:18px; height:18px; display:inline-block; background:linear-gradient(90deg,#4AA8FF 0 18%,transparent 18% 28%,#66E7FF 28% 46%,transparent 46% 56%,#4AA8FF 56% 74%,transparent 74% 84%,#66E7FF 84%); clip-path:polygon(0 55%,18% 55%,18% 25%,28% 25%,28% 0,46% 0,46% 70%,56% 70%,56% 38%,74% 38%,74% 15%,84% 15%,84% 52%,100% 52%,100% 100%,84% 100%,84% 66%,74% 66%,74% 100%,56% 100%,56% 78%,46% 78%,46% 100%,28% 100%,28% 52%,18% 52%,18% 82%,0 82%); filter:drop-shadow(0 0 6px rgba(102,231,255,0.65)); }
+  .hero-wordmark { letter-spacing:0.04em; }
+  .hero-wordmark::before { display:none; }
+  .menu-toggle { display:none; width:40px; height:40px; padding:0; border:1px solid rgba(255,255,255,0.15); border-radius:50%; background:rgba(255,255,255,0.04); color:#fff; cursor:pointer; font:inherit; }
+  .menu-toggle span, .menu-toggle::before, .menu-toggle::after { content:''; display:block; width:16px; height:1px; background:currentColor; margin:4px auto; transition:transform 0.25s ease, opacity 0.25s ease; }
+  .h4nav.is-open .menu-toggle::before { transform:translateY(5px) rotate(45deg); }
+  .h4nav.is-open .menu-toggle span { opacity:0; }
+  .h4nav.is-open .menu-toggle::after { transform:translateY(-5px) rotate(-45deg); }
+  .rel-card { --accent:#4AA8FF; position:relative; }
+  .rel-card::after { content:''; position:absolute; inset:auto -25% -55% 25%; height:55%; pointer-events:none; background:radial-gradient(ellipse,var(--accent),transparent 68%); opacity:0; filter:blur(18px); transition:opacity 0.45s ease; }
+  .rel-card:hover::after, .rel-card:focus-visible::after { opacity:0.2; }
+  .rel-card:hover, .rel-card:focus-visible { border-color:color-mix(in srgb,var(--accent) 55%,transparent); }
+  .details-btn { align-self:flex-start; background:transparent; border:1px solid rgba(102,231,255,0.35); color:#66E7FF; }
+  .details-btn:hover { border-color:#66E7FF; transform:translateY(-2px); }
+  .release-modal { width:min(900px,calc(100vw - 32px)); max-height:min(760px,calc(100vh - 32px)); padding:0; border:1px solid rgba(102,231,255,0.3); border-radius:24px; background:#0b0e14; color:#fff; box-shadow:0 28px 100px rgba(0,0,0,0.8),0 0 80px rgba(74,168,255,0.15); }
+  .release-modal::backdrop { background:rgba(0,0,0,0.78); backdrop-filter:blur(8px); }
+  .modal-card { display:grid; grid-template-columns:minmax(260px,0.9fr) minmax(0,1.1fr); position:relative; }
+  .modal-cover { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }
+  .modal-copy { padding:54px 48px; display:flex; flex-direction:column; align-items:flex-start; gap:20px; }
+  .modal-close { position:absolute; z-index:2; top:14px; right:14px; }
+  .modal-player { width:100%; min-height:152px; border-radius:14px; overflow:hidden; background:rgba(255,255,255,0.04); }
+  .modal-player iframe { display:block; border:0; width:100%; height:152px; }
+  .modal-links { display:flex; gap:12px; flex-wrap:wrap; }
+  .contact-panel { border-radius:24px; border:1px solid rgba(74,168,255,0.22); background:linear-gradient(135deg,rgba(11,61,145,0.3),rgba(17,17,17,0.65)); padding:64px 56px; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:34px; box-shadow:0 0 80px rgba(74,168,255,0.08) inset; }
+  .contact-actions { display:flex; flex-wrap:wrap; gap:14px; }
+
   @media (max-width: 720px) {
     .section { padding-left:20px !important; padding-right:20px !important; }
     footer { padding-left:20px !important; padding-right:20px !important; }
     .hero-portrait { width:min(520px,96vw) !important; margin-top:0 !important; margin-bottom:-24vw !important; }
-    nav.h4nav { gap:12px !important; padding:12px 16px !important; max-width:calc(100vw - 24px); }
-    nav.h4nav .navlinks { gap:14px !important; font-size:10px !important; }
-    nav.h4nav .hide-mobile { display:none !important; }
+    nav.h4nav { width:calc(100vw - 24px); justify-content:space-between; gap:12px !important; padding:10px 12px 10px 18px !important; max-width:none; }
+    nav.h4nav .navlinks { display:none !important; position:absolute; top:calc(100% + 8px); left:0; right:0; padding:12px; gap:2px !important; flex-direction:column; align-items:stretch; font-size:11px !important; border:1px solid rgba(255,255,255,0.1); border-radius:20px; background:rgba(10,12,18,0.96); box-shadow:0 16px 40px rgba(0,0,0,0.48); }
+    nav.h4nav.is-open .navlinks { display:flex !important; }
+    nav.h4nav .navlinks a { padding:12px 14px; border-radius:10px; }
+    nav.h4nav .navlinks a:hover, nav.h4nav .navlinks a:focus-visible { background:rgba(74,168,255,0.1); }
+    nav.h4nav .hide-mobile { display:block !important; }
+    .menu-toggle { display:block; }
     .feat-grid { grid-template-columns: 1fr !important; }
     .feat-copy { padding:32px 26px !important; }
     .video-list { grid-template-columns:1fr !important; }
     .next-card { padding:42px 28px !important; }
     .stats { gap:32px !important; }
+    .contact-panel { padding:42px 28px; }
+    .modal-card { grid-template-columns:1fr; }
+    .modal-copy { padding:30px 26px 34px; }
+    .modal-cover { max-height:46vh; }
   }
 
   @media (max-width: 520px) {
-    nav.h4nav .navlinks a:not(:first-child) { display:none; }
     .stats { gap:18px !important; }
     .stats > div > div:first-child { font-size:30px !important; }
     .release-grid { grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr)) !important; }
@@ -134,8 +191,9 @@
 
   <!-- glass nav -->
   <nav class="h4nav" style="position:fixed;top:20px;left:50%;transform:translateX(-50%);z-index:60;display:flex;align-items:center;gap:34px;padding:14px 30px;border-radius:100px;background:rgba(10,12,18,0.55);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,0.08);box-shadow:0 8px 40px rgba(0,0,0,0.5);">
-    <a href="#top" style="font-weight:700;font-size:15px;letter-spacing:0.22em;">H4NDR3X</a>
-    <div class="navlinks" style="display:flex;align-items:center;gap:26px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#B8C0CC;">
+    <a href="#top" class="wordmark" style="font-size:15px;">H4NDR3X</a>
+    <button class="menu-toggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-navigation"><span></span></button>
+    <div id="primary-navigation" class="navlinks" style="display:flex;align-items:center;gap:26px;font-size:12px;letter-spacing:0.16em;text-transform:uppercase;color:#B8C0CC;">
       <a href="#releases" style="color:#B8C0CC;">Releases</a>
       <a href="#tracks" style="color:#B8C0CC;">Tracks</a>
       <a href="#videos" class="hide-mobile" style="color:#B8C0CC;">Videos</a>
@@ -157,7 +215,7 @@
 
     <div style="position:relative;font-size:12px;letter-spacing:0.5em;text-transform:uppercase;color:#4AA8FF;margin-bottom:34px;animation:fadeUp 1.2s ease both;">Drum &amp; Bass — Producer</div>
 
-    <h1 style="font-weight:700;font-size:clamp(58px,11vw,168px);line-height:0.9;letter-spacing:0.04em;margin:0;background:linear-gradient(110deg,#8a94a6 0%,#ffffff 25%,#c9d4e4 50%,#ffffff 75%,#8a94a6 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite, fadeUp 1.2s ease 0.15s both;">H4NDR3X</h1>
+    <h1 class="wordmark hero-wordmark" style="font-size:clamp(58px,11vw,168px);line-height:0.9;margin:0;background:linear-gradient(110deg,#8a94a6 0%,#ffffff 25%,#c9d4e4 50%,#ffffff 75%,#8a94a6 100%);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 8s linear infinite, fadeUp 1.2s ease 0.15s both;">H4NDR3X</h1>
 
     <p style="max-width:460px;font-size:16px;line-height:1.7;color:#B8C0CC;margin:36px 0 0;animation:fadeUp 1.2s ease 0.3s both;">
       Rolling breaks. Subterranean bass. Machine-tight drums, engineered for 3 AM.
@@ -211,6 +269,7 @@
         <div id="feat-eq" class="eq" style="height:36px;" aria-hidden="true"></div>
         <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
           <button onclick="playFeatured()" class="btn btn-sm btn-spotify" aria-label="Toggle featured release preview">▶ Preview</button>
+          <button onclick="openRelease(FEATURED)" class="btn btn-sm details-btn">Release details</button>
           <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
         </div>
       </div>
@@ -248,10 +307,10 @@
     </div>
     <p style="color:#B8C0CC;font-size:14px;margin:0 0 32px;">Visit the H4NDR3X channel for the latest videos and visualisers.</p>
     <div class="video-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
-      <a href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="vid-tile" aria-label="Open the H4NDR3X YouTube channel in a new tab" style="background:linear-gradient(150deg,rgba(11,61,145,0.4),rgba(5,5,5,0.95));">
+      <a id="featured-video" href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="vid-tile" aria-label="Open the H4NDR3X YouTube channel in a new tab" style="background:linear-gradient(150deg,rgba(5,5,5,0.25),rgba(5,5,5,0.88)),url('assets/og-h4ndr3x.jpg') center/cover;">
         <span class="vid-grid" aria-hidden="true"></span>
         <span class="vid-play" aria-hidden="true">▶</span>
-        <span class="vid-label">Visit H4NDR3X on YouTube ↗</span>
+        <span id="featured-video-label" class="vid-label">Visit H4NDR3X on YouTube ↗</span>
       </a>
     </div>
   </section>
@@ -268,8 +327,23 @@
     </div>
   </section>
 
-  <!-- CONTACT / FOOTER -->
-  <footer id="contact" style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.07);margin-top:60px;padding:90px 32px 60px;">
+  <!-- CONTACT -->
+  <section id="contact" class="section" style="padding:80px 32px 40px;">
+    <div class="contact-panel">
+      <div>
+        <span style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#66E7FF;">Bookings &amp; updates</span>
+        <h2 style="font-weight:700;font-size:clamp(28px,3.6vw,46px);letter-spacing:0.03em;margin:16px 0 0;">Bring H4NDR3X to the room.</h2>
+        <p style="margin:14px 0 0;color:#B8C0CC;font-size:15px;line-height:1.6;max-width:610px;">For bookings, collaborations and release updates, get in touch directly.</p>
+      </div>
+      <div class="contact-actions">
+        <a href="mailto:booking@h4ndr3x.com?subject=Booking%20enquiry%20for%20H4NDR3X" class="btn btn-spotify">Book H4NDR3X</a>
+        <a href="mailto:booking@h4ndr3x.com?subject=Join%20the%20H4NDR3X%20mailing%20list" class="btn btn-yt">Join mailing list</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.07);margin-top:60px;padding:90px 32px 60px;">
     <div style="max-width:1360px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;gap:30px;">
       <div style="font-weight:700;font-size:clamp(40px,7vw,96px);letter-spacing:0.06em;line-height:0.9;background:linear-gradient(110deg,#8a94a6,#ffffff,#8a94a6);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:shimmer 10s linear infinite;">H4NDR3X</div>
       <div class="social-row">
@@ -293,18 +367,39 @@
 
 </div>
 
+<dialog id="release-modal" class="release-modal" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <button id="modal-close" type="button" class="close-btn modal-close" aria-label="Close release details">✕</button>
+    <img id="modal-cover" class="modal-cover" src="" width="640" height="640" alt="">
+    <div class="modal-copy">
+      <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#66E7FF;">Release details</span>
+      <h2 id="modal-title" style="font-weight:700;font-size:clamp(34px,5vw,56px);line-height:1;letter-spacing:0.02em;margin:0;"></h2>
+      <p id="modal-meta" style="margin:0;color:#B8C0CC;font-size:14px;letter-spacing:0.06em;"></p>
+      <div id="modal-player" class="modal-player"></div>
+      <div class="modal-links">
+        <a id="modal-spotify" href="#" target="_blank" rel="noopener" class="btn btn-sm btn-spotify">Open in Spotify</a>
+        <a id="modal-youtube" href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
+      </div>
+    </div>
+  </div>
+</dialog>
+
 <script>
   // ---- Single source of truth for releases (cover, title, meta, Spotify album id) ----
-  var FEATURED = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026 · Drum & Bass' };
+  var FEATURED = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026 · Drum & Bass', accent: '#66E7FF' };
   var RELEASES = [
-    { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026' },
-    { id: '5Jq7sgYSXUt7v03M2wqKc9', cover: 'assets/cover-my-foundation.jpg', title: 'MY FOUNDATION', meta: 'Single — 2026 · Radio Edit' },
-    { id: '3LTnw7cPkwEOA6KqZA2FCT', cover: 'assets/cover-the-pressure.jpg', title: 'THE PRESSURE', meta: 'Single — 2026' },
-    { id: '4NiHpPeBmp0XhXg4OK9Vdh', cover: 'assets/cover-neon-detonate.jpg', title: 'NEON DETONATE', meta: 'Single — 2026' },
-    { id: '15QydJzzCwdzPFM0DAAWrx', cover: 'assets/cover-finally-breathing.jpg', title: 'FINALLY BREATHING', meta: 'Single — 2026' },
-    { id: '4pjNdt1CHWmZ5fybRno67Q', cover: 'assets/cover-fearless.jpg', title: 'FEARLESS', meta: 'Single — 2026' },
-    { id: '5N2JPuFoprTtw9AqT3k4hO', cover: 'assets/cover-brassline.jpg', title: 'BRASSLINE', meta: 'Single — 2026 · Radio Edit' }
+    { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026', accent: '#4AA8FF' },
+    { id: '5Jq7sgYSXUt7v03M2wqKc9', cover: 'assets/cover-my-foundation.jpg', title: 'MY FOUNDATION', meta: 'Single — 2026 · Radio Edit', accent: '#87B3FF' },
+    { id: '3LTnw7cPkwEOA6KqZA2FCT', cover: 'assets/cover-the-pressure.jpg', title: 'THE PRESSURE', meta: 'Single — 2026', accent: '#B5C2D8' },
+    { id: '4NiHpPeBmp0XhXg4OK9Vdh', cover: 'assets/cover-neon-detonate.jpg', title: 'NEON DETONATE', meta: 'Single — 2026', accent: '#72D9FF' },
+    { id: '15QydJzzCwdzPFM0DAAWrx', cover: 'assets/cover-finally-breathing.jpg', title: 'FINALLY BREATHING', meta: 'Single — 2026', accent: '#8ED6E8' },
+    { id: '4pjNdt1CHWmZ5fybRno67Q', cover: 'assets/cover-fearless.jpg', title: 'FEARLESS', meta: 'Single — 2026', accent: '#7F94BB' },
+    { id: '5N2JPuFoprTtw9AqT3k4hO', cover: 'assets/cover-brassline.jpg', title: 'BRASSLINE', meta: 'Single — 2026 · Radio Edit', accent: '#73B6E6' }
   ];
+  var FEATURED_VIDEO = {
+    url: 'https://www.youtube.com/@H4NDR3X/videos',
+    label: 'Visit H4NDR3X on YouTube ↗'
+  };
 
   // ---- Equalizer bars ----
   function buildEqBars(container, color, count) {
@@ -344,70 +439,73 @@
     document.getElementById('feat-iframe').src = '';
   }
 
-  // ---- All-releases grid (built from RELEASES so markup isn't duplicated per card) ----
+  // ---- All-releases grid and detail dialog ----
   var grid = document.getElementById('releases-grid');
   RELEASES.forEach(function (release) {
     var card = document.createElement('div');
     card.className = 'rel-card';
+    card.style.setProperty('--accent', release.accent);
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
-    card.setAttribute('aria-label', 'Preview ' + release.title);
+    card.setAttribute('aria-label', 'Open details for ' + release.title);
     card.innerHTML =
       '<div class="cover-wrap">' +
         '<img src="' + release.cover + '" width="640" height="640" alt="' + release.title + ' — cover art" loading="lazy">' +
-        '<div class="preview-overlay">' +
-          '<iframe title="' + release.title + ' — Spotify preview" src="" data-src="https://open.spotify.com/embed/album/' + release.id + '?utm_source=generator&theme=0" width="100%" height="100%" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"></iframe>' +
-          '<button class="close-btn" aria-label="Close preview">✕</button>' +
-        '</div>' +
       '</div>' +
       '<div class="rel-meta">' +
         '<div><div class="rel-title">' + release.title + '</div><div class="rel-sub">' + release.meta + '</div></div>' +
-        '<span class="play-btn" aria-hidden="true">▶</span>' +
+        '<span class="play-btn" aria-hidden="true" style="border-color:' + release.accent + ';color:' + release.accent + '">↗</span>' +
       '</div>';
 
-    card.addEventListener('click', function () { playPreview(card); });
+    card.addEventListener('click', function () { openRelease(release); });
     card.addEventListener('keydown', function (e) {
       if (e.target === card && (e.key === 'Enter' || e.key === ' ')) {
         e.preventDefault();
-        playPreview(card);
+        openRelease(release);
       }
-    });
-    card.querySelector('.close-btn').addEventListener('click', function (e) {
-      e.stopPropagation();
-      closePreview(card);
     });
     grid.appendChild(card);
   });
 
-  function playPreview(card) {
-    var overlay = card.querySelector('.preview-overlay');
-    var iframe = overlay.querySelector('iframe');
-    // Close any other open previews first
-    document.querySelectorAll('.preview-overlay.is-open').forEach(function (o) {
-      if (o !== overlay) {
-        o.classList.remove('is-open');
-        o.querySelector('iframe').src = '';
-        var otherCard = o.closest('.rel-card');
-        otherCard.querySelector('.play-btn').textContent = '▶';
-        otherCard.querySelector('.play-btn').style.background = '';
-      }
+  var modal = document.getElementById('release-modal');
+  function openRelease(release) {
+    document.getElementById('modal-cover').src = release.cover;
+    document.getElementById('modal-cover').alt = release.title + ' — cover art';
+    document.getElementById('modal-title').textContent = release.title;
+    document.getElementById('modal-meta').textContent = release.meta;
+    document.getElementById('modal-spotify').href = 'https://open.spotify.com/album/' + release.id;
+    document.getElementById('modal-player').innerHTML = '<iframe title="' + release.title + ' — Spotify preview" src="https://open.spotify.com/embed/album/' + release.id + '?utm_source=generator&theme=0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"></iframe>';
+    modal.showModal();
+  }
+  function closeReleaseModal() {
+    modal.close();
+    document.getElementById('modal-player').innerHTML = '';
+  }
+  document.getElementById('modal-close').addEventListener('click', closeReleaseModal);
+  modal.addEventListener('click', function (e) {
+    if (e.target === modal) closeReleaseModal();
+  });
+  modal.addEventListener('cancel', function () {
+    document.getElementById('modal-player').innerHTML = '';
+  });
+
+  // ---- Mobile navigation and featured video data ----
+  var nav = document.querySelector('.h4nav');
+  var menuToggle = document.querySelector('.menu-toggle');
+  menuToggle.addEventListener('click', function () {
+    var isOpen = nav.classList.toggle('is-open');
+    menuToggle.setAttribute('aria-expanded', String(isOpen));
+    menuToggle.setAttribute('aria-label', isOpen ? 'Close navigation menu' : 'Open navigation menu');
+  });
+  document.querySelectorAll('.navlinks a').forEach(function (link) {
+    link.addEventListener('click', function () {
+      nav.classList.remove('is-open');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      menuToggle.setAttribute('aria-label', 'Open navigation menu');
     });
-    if (overlay.classList.contains('is-open')) {
-      closePreview(card);
-    } else {
-      overlay.classList.add('is-open');
-      iframe.src = iframe.dataset.src;
-      card.querySelector('.play-btn').textContent = '■';
-      card.querySelector('.play-btn').style.background = 'rgba(74,168,255,0.2)';
-    }
-  }
-  function closePreview(card) {
-    var overlay = card.querySelector('.preview-overlay');
-    overlay.classList.remove('is-open');
-    overlay.querySelector('iframe').src = '';
-    card.querySelector('.play-btn').textContent = '▶';
-    card.querySelector('.play-btn').style.background = '';
-  }
+  });
+  document.getElementById('featured-video').href = FEATURED_VIDEO.url;
+  document.getElementById('featured-video-label').textContent = FEATURED_VIDEO.label;
 
   // ---- Spotify artist embed (load on click) ----
   document.getElementById('load-embed').addEventListener('click', function () {
