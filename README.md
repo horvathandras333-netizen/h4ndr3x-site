@@ -34,9 +34,9 @@ grid are both built from them, so adding a track means adding one object:
 The `id` is the album ID from a Spotify share link:
 `open.spotify.com/album/<THIS_PART>`. Cover art goes in `assets/` as a square JPG.
 
-The two tiles in the Visuals section are still placeholders pointing at the channel
-root — swap each `href` for a real `https://youtu.be/VIDEO_ID` when there's a video
-to point at.
+The Visuals section links to the channel's Videos page. When a specific video is
+ready to feature, change that link to its `https://youtu.be/VIDEO_ID` URL and update
+the tile label to match.
 
 ## Deploying
 

@@ -85,12 +85,24 @@
   .social-icon svg { width:20px; height:20px; fill:none; stroke:currentColor; stroke-width:1.6; stroke-linecap:round; stroke-linejoin:round; }
 
   @media (max-width: 720px) {
+    .section { padding-left:20px !important; padding-right:20px !important; }
+    footer { padding-left:20px !important; padding-right:20px !important; }
     .hero-portrait { width:min(520px,96vw) !important; margin-top:0 !important; margin-bottom:-24vw !important; }
-    nav.h4nav { gap:16px !important; padding:12px 18px !important; max-width:calc(100vw - 24px); }
+    nav.h4nav { gap:12px !important; padding:12px 16px !important; max-width:calc(100vw - 24px); }
     nav.h4nav .navlinks { gap:14px !important; font-size:10px !important; }
     nav.h4nav .hide-mobile { display:none !important; }
     .feat-grid { grid-template-columns: 1fr !important; }
     .feat-copy { padding:32px 26px !important; }
+    .video-list { grid-template-columns:1fr !important; }
+    .next-card { padding:42px 28px !important; }
+    .stats { gap:32px !important; }
+  }
+
+  @media (max-width: 520px) {
+    nav.h4nav .navlinks a:not(:first-child) { display:none; }
+    .stats { gap:18px !important; }
+    .stats > div > div:first-child { font-size:30px !important; }
+    .release-grid { grid-template-columns:repeat(auto-fill,minmax(min(250px,100%),1fr)) !important; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -168,7 +180,7 @@
       <p style="margin:0;color:#B8C0CC;font-size:17px;line-height:1.85;max-width:780px;">
         H4NDR3X is a human-AI production project — drum &amp; bass with surgical precision, rolling breaks, subterranean low-end and atmospheres pulled from empty warehouses and late-night city air. Machines generate. H4NDR3X decides. Every release is mixed to move concrete.
       </p>
-      <div style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
+      <div class="stats" style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">174</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">BPM</div></div>
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">8+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">2026</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Active</div></div>
@@ -188,7 +200,7 @@
       <div id="feat-cover" class="cover-wrap">
         <img id="feat-img" src="" width="640" height="640" alt="" loading="lazy">
         <div id="feat-preview" class="preview-overlay">
-          <iframe id="feat-iframe" title="Adrenaline — Spotify preview" src="" width="100%" height="100%" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" style="display:block;border:0;"></iframe>
+          <iframe id="feat-iframe" title="Featured release — Spotify preview" src="" width="100%" height="100%" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" style="display:block;border:0;"></iframe>
           <button onclick="closeFeatured()" class="close-btn" aria-label="Close preview">✕</button>
         </div>
       </div>
@@ -198,7 +210,7 @@
         <p id="feat-meta" style="margin:0;color:#B8C0CC;font-size:14px;letter-spacing:0.06em;"></p>
         <div id="feat-eq" class="eq" style="height:36px;" aria-hidden="true"></div>
         <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
-          <button onclick="playFeatured()" class="btn btn-sm btn-spotify" aria-label="Toggle Adrenaline preview">▶ Preview</button>
+          <button onclick="playFeatured()" class="btn btn-sm btn-spotify" aria-label="Toggle featured release preview">▶ Preview</button>
           <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
         </div>
       </div>
@@ -225,7 +237,7 @@
   <section id="all-releases" class="section" style="padding:60px 32px 80px;">
     <h2 style="font-weight:700;font-size:clamp(24px,3vw,40px);letter-spacing:0.03em;margin:0 0 12px;">All Releases</h2>
     <p style="color:#5a6474;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 40px;">Click any card to preview · Opens Spotify player inline</p>
-    <div id="releases-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;perspective:1200px;"></div>
+    <div id="releases-grid" class="release-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;perspective:1200px;"></div>
   </section>
 
   <!-- VIDEOS -->
@@ -234,29 +246,19 @@
       <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;margin:0;">Visuals</h2>
       <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#4AA8FF;">All videos ↗</a>
     </div>
-    <p style="color:#B8C0CC;font-size:14px;margin:0 0 32px;">Click a tile to play. Videos open on YouTube in a new tab.</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
-      <!-- Video tile 1 — replace href with a specific YouTube video URL, e.g. https://youtu.be/YOUR_VIDEO_ID -->
-      <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="vid-tile" style="background:linear-gradient(150deg,rgba(11,61,145,0.4),rgba(5,5,5,0.95));">
+    <p style="color:#B8C0CC;font-size:14px;margin:0 0 32px;">Visit the H4NDR3X channel for the latest videos and visualisers.</p>
+    <div class="video-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
+      <a href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="vid-tile" aria-label="Open the H4NDR3X YouTube channel in a new tab" style="background:linear-gradient(150deg,rgba(11,61,145,0.4),rgba(5,5,5,0.95));">
         <span class="vid-grid" aria-hidden="true"></span>
         <span class="vid-play" aria-hidden="true">▶</span>
-        <span class="vid-label">H4NDR3X on YouTube ↗</span>
-      </a>
-      <!-- Video tile 2 -->
-      <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="vid-tile" style="background:linear-gradient(210deg,rgba(102,231,255,0.12),rgba(5,5,5,0.95));">
-        <span class="vid-grid" aria-hidden="true"></span>
-        <span class="vid-play" aria-hidden="true">▶</span>
-        <span class="vid-label">New visuals — soon ↗</span>
+        <span class="vid-label">Visit H4NDR3X on YouTube ↗</span>
       </a>
     </div>
-    <p style="color:#5a6474;font-size:11px;letter-spacing:0.12em;margin:24px 0 0;">
-      💡 To add real videos: paste your YouTube video URL into each tile's href attribute — e.g. https://youtu.be/YOUR_VIDEO_ID
-    </p>
   </section>
 
   <!-- NEXT / upcoming -->
   <section class="section" style="padding:100px 32px 60px;">
-    <div style="border-radius:24px;border:1px solid rgba(74,168,255,0.22);background:linear-gradient(160deg,rgba(11,61,145,0.22),rgba(17,17,17,0.6));backdrop-filter:blur(20px);padding:70px 56px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px;box-shadow:0 0 80px rgba(74,168,255,0.08) inset;">
+    <div class="next-card" style="border-radius:24px;border:1px solid rgba(74,168,255,0.22);background:linear-gradient(160deg,rgba(11,61,145,0.22),rgba(17,17,17,0.6));backdrop-filter:blur(20px);padding:70px 56px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:32px;box-shadow:0 0 80px rgba(74,168,255,0.08) inset;">
       <div>
         <span style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#66E7FF;">Next transmission</span>
         <h2 style="font-weight:700;font-size:clamp(28px,3.6vw,46px);letter-spacing:0.03em;margin:16px 0 0;">New material in the works.</h2>
@@ -293,9 +295,9 @@
 
 <script>
   // ---- Single source of truth for releases (cover, title, meta, Spotify album id) ----
-  var FEATURED = { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026 · Drum & Bass' };
+  var FEATURED = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026 · Drum & Bass' };
   var RELEASES = [
-    { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026' },
+    { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026' },
     { id: '5Jq7sgYSXUt7v03M2wqKc9', cover: 'assets/cover-my-foundation.jpg', title: 'MY FOUNDATION', meta: 'Single — 2026 · Radio Edit' },
     { id: '3LTnw7cPkwEOA6KqZA2FCT', cover: 'assets/cover-the-pressure.jpg', title: 'THE PRESSURE', meta: 'Single — 2026' },
     { id: '4NiHpPeBmp0XhXg4OK9Vdh', cover: 'assets/cover-neon-detonate.jpg', title: 'NEON DETONATE', meta: 'Single — 2026' },
