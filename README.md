@@ -39,8 +39,9 @@ The Visuals tile is driven by the `FEATURED_VIDEO` object. When a specific video
 ready to feature, replace its `url` with the `https://youtu.be/VIDEO_ID` URL and
 update its `label`.
 
-The booking and mailing-list CTAs use `booking@h4ndr3x.com`; update those two
-`mailto:` links if you use a different inbox or add a dedicated mailing-list service.
+The mailing-list CTA uses `booking@h4ndr3x.com`; update that `mailto:` link if
+you use a different inbox or add a dedicated mailing-list service. There is no
+booking CTA — H4NDR3X does not take bookings.
 
 ## Deploying
 
