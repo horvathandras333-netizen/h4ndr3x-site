@@ -216,6 +216,20 @@ While researching the two newest releases, noticed the artist's channel had two 
 
 ---
 
+## 14. All three newest releases featured, not just one (2026-09-19)
+
+Artist asked for the 3 newest songs (Taking It Well, Leave It Till the Morning, Break the Frame) to all appear "under featured," not just the single newest one in a solo hero card.
+
+Restructured "Latest Releases" from one hardcoded glass card (fixed `feat-*` element ids) into a **new `FEATURED_RELEASES` array** (`[TAKING_IT_WELL, LEAVE_IT_TILL_THE_MORNING, BREAK_THE_FRAME]`) rendered as N independent stacked glass cards via a `buildFeaturedCard(release)` function — same visual design as before, just built per-release instead of hand-authored once. Each card has its own scoped preview overlay, YouTube-embed iframe, and full-track sample player (no shared ids, so they can't collide or step on each other — verified each card's preview/sample toggle independently and cross-pauses correctly: opening one card's video preview pauses only that card's sample, and vice versa).
+
+`FEATURED` (used by the Featured Tracks spotlight, and anywhere else that means "the single most current release") now reads as `FEATURED_RELEASES[0]` — still the newest release, unchanged behavior there. All three remain included in `RELEASES` too (same by-reference pattern as items 10/11), so they still appear in the All Releases grid.
+
+To feature more or fewer releases, edit the `FEATURED_RELEASES` array — nothing else needs to change.
+
+- [x] Applied
+
+---
+
 ## Not changing
 
 - Visual design. Dark, technical and precise reads as "producer" more than "drum and bass" — the words were doing the pinning, not the styling.

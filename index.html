@@ -257,32 +257,8 @@
       <span style="font-size:11px;letter-spacing:0.3em;text-transform:uppercase;color:#5a6474;">2026</span>
     </div>
 
-    <!-- featured glass card -->
-    <div class="feat-grid" style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0;border-radius:24px;background:rgba(17,17,17,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 60px rgba(74,168,255,0.07);overflow:hidden;margin-bottom:28px;">
-      <div id="feat-cover" class="cover-wrap">
-        <img id="feat-img" width="640" height="640" alt="" loading="lazy">
-        <div id="feat-preview" class="preview-overlay">
-          <iframe id="feat-iframe" title="Featured release — Spotify preview" src="" width="100%" height="100%" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" style="display:block;border:0;"></iframe>
-          <button onclick="closeFeatured()" class="close-btn" aria-label="Close preview">✕</button>
-        </div>
-      </div>
-      <div class="feat-copy" style="padding:56px;display:flex;flex-direction:column;justify-content:center;gap:22px;">
-        <span style="align-self:flex-start;padding:7px 16px;border-radius:100px;border:1px solid rgba(102,231,255,0.35);color:#66E7FF;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;">Latest — Single</span>
-        <h3 id="feat-title" style="font-weight:700;font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:0.02em;margin:0;"></h3>
-        <p id="feat-meta" style="margin:0;color:#B8C0CC;font-size:14px;letter-spacing:0.06em;"></p>
-        <div id="feat-tags" class="tag-row"></div>
-        <div id="feat-eq" class="eq" style="height:36px;" aria-hidden="true"></div>
-        <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
-          <button onclick="playFeatured()" class="btn btn-sm btn-spotify" aria-label="Toggle featured release preview">▶ Preview</button>
-          <button onclick="openRelease(FEATURED)" class="btn btn-sm details-btn">Release details</button>
-          <a id="feat-youtube" href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
-        </div>
-        <div id="feat-sample-wrap" class="sample-wrap">
-          <span class="sample-label">Full track</span>
-          <audio id="feat-sample" class="sample-audio" controls preload="none"></audio>
-        </div>
-      </div>
-    </div>
+    <!-- featured glass cards (built from FEATURED_RELEASES in the script below) -->
+    <div id="featured-list"></div>
   </section>
 
   <!-- ABOUT -->
@@ -425,8 +401,11 @@
   var LEAVE_IT_TILL_THE_MORNING = { youtubeId: '1HzFskN_3GY', cover: 'assets/cover-leave-it-till-the-morning.jpg', title: 'LEAVE IT TILL THE MORNING', meta: 'Single — 2026 · YouTube', accent: '#E8B36A', genre: 'Alternative', mood: 'Heartbreak', sample: 'assets/audio-leave-it-till-the-morning.mp3' };
   var BREAK_THE_FRAME = { youtubeId: 'KJ9i0ow6Eyw', cover: 'assets/cover-break-the-frame.jpg', title: 'BREAK THE FRAME', meta: 'Single — 2026 · YouTube', accent: '#5EC8FF', genre: 'Rap-Rock', mood: 'Defiant', sample: 'assets/audio-break-the-frame.mp3' };
   var SPENT_IT_RIGHT = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
-  var FEATURED = TAKING_IT_WELL;
-  // FEATURED is included by reference so its All Releases card stays in sync with the featured card.
+  // The three newest releases all get a featured card in Latest Releases; FEATURED (newest) also
+  // drives the Featured Tracks spotlight. All are included in RELEASES by reference so their cards
+  // stay in sync everywhere they appear.
+  var FEATURED_RELEASES = [TAKING_IT_WELL, LEAVE_IT_TILL_THE_MORNING, BREAK_THE_FRAME];
+  var FEATURED = FEATURED_RELEASES[0];
   var RELEASES = [
     TAKING_IT_WELL,
     LEAVE_IT_TILL_THE_MORNING,
@@ -463,7 +442,6 @@
     container.innerHTML = html;
   }
   buildEqBars(document.getElementById('hero-eq'), '#4AA8FF', 28);
-  buildEqBars(document.getElementById('feat-eq'), '#66E7FF', 30);
 
   // ---- Optional genre/mood tags ----
   // Freeform, no predefined list. Add `genre` and/or `mood` (short strings) to a
@@ -505,14 +483,131 @@
     }
   }
 
-  // ---- Featured release ----
-  document.getElementById('feat-img').src = FEATURED.cover;
-  document.getElementById('feat-img').alt = FEATURED.title + ' — cover art';
-  document.getElementById('feat-title').textContent = FEATURED.title;
-  document.getElementById('feat-meta').textContent = FEATURED.meta;
-  document.getElementById('feat-tags').innerHTML = tagRowHtml(FEATURED);
-  document.getElementById('feat-youtube').href = youtubeUrl(FEATURED);
-  setSample('feat-sample-wrap', 'feat-sample', FEATURED);
+  // ---- Featured releases (one glass card per entry in FEATURED_RELEASES) ----
+  function buildFeaturedCard(release) {
+    var card = document.createElement('div');
+    card.className = 'feat-grid';
+    card.style.cssText = 'display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0;border-radius:24px;background:rgba(17,17,17,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 60px rgba(74,168,255,0.07);overflow:hidden;margin-bottom:28px;';
+
+    var coverWrap = document.createElement('div');
+    coverWrap.className = 'cover-wrap';
+    var img = document.createElement('img');
+    img.width = 640; img.height = 640; img.loading = 'lazy';
+    img.src = release.cover;
+    img.alt = release.title + ' — cover art';
+    var previewOverlay = document.createElement('div');
+    previewOverlay.className = 'preview-overlay';
+    var iframe = document.createElement('iframe');
+    iframe.title = release.title + ' — preview';
+    iframe.src = '';
+    iframe.width = '100%'; iframe.height = '100%'; iframe.frameBorder = '0';
+    iframe.allow = 'autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture';
+    iframe.style.cssText = 'display:block;border:0;';
+    var closeBtn = document.createElement('button');
+    closeBtn.className = 'close-btn';
+    closeBtn.setAttribute('aria-label', 'Close preview');
+    closeBtn.textContent = '✕';
+    previewOverlay.appendChild(iframe);
+    previewOverlay.appendChild(closeBtn);
+    coverWrap.appendChild(img);
+    coverWrap.appendChild(previewOverlay);
+
+    var copy = document.createElement('div');
+    copy.className = 'feat-copy';
+    copy.style.cssText = 'padding:56px;display:flex;flex-direction:column;justify-content:center;gap:22px;';
+
+    var badge = document.createElement('span');
+    badge.style.cssText = 'align-self:flex-start;padding:7px 16px;border-radius:100px;border:1px solid rgba(102,231,255,0.35);color:#66E7FF;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;';
+    badge.textContent = 'Featured — Single';
+
+    var title = document.createElement('h3');
+    title.style.cssText = 'font-weight:700;font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:0.02em;margin:0;';
+    title.textContent = release.title;
+
+    var meta = document.createElement('p');
+    meta.style.cssText = 'margin:0;color:#B8C0CC;font-size:14px;letter-spacing:0.06em;';
+    meta.textContent = release.meta;
+
+    var tags = document.createElement('div');
+    tags.className = 'tag-row';
+    tags.innerHTML = tagRowHtml(release);
+
+    var eq = document.createElement('div');
+    eq.className = 'eq';
+    eq.style.height = '36px';
+    eq.setAttribute('aria-hidden', 'true');
+
+    var btnRow = document.createElement('div');
+    btnRow.style.cssText = 'display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;';
+
+    var previewBtn = document.createElement('button');
+    previewBtn.className = 'btn btn-sm btn-spotify';
+    previewBtn.setAttribute('aria-label', 'Toggle preview for ' + release.title);
+    previewBtn.textContent = '▶ Preview';
+
+    var detailsBtn = document.createElement('button');
+    detailsBtn.className = 'btn btn-sm details-btn';
+    detailsBtn.textContent = 'Release details';
+    detailsBtn.addEventListener('click', function () { openRelease(release); });
+
+    var ytLink = document.createElement('a');
+    ytLink.className = 'btn btn-sm btn-yt';
+    ytLink.target = '_blank';
+    ytLink.rel = 'noopener';
+    ytLink.href = youtubeUrl(release);
+    ytLink.textContent = 'YouTube';
+
+    btnRow.appendChild(previewBtn);
+    btnRow.appendChild(detailsBtn);
+    btnRow.appendChild(ytLink);
+
+    var sampleWrap = document.createElement('div');
+    sampleWrap.className = 'sample-wrap';
+    var sampleLabel = document.createElement('span');
+    sampleLabel.className = 'sample-label';
+    sampleLabel.textContent = 'Full track';
+    var sampleAudio = document.createElement('audio');
+    sampleAudio.className = 'sample-audio';
+    sampleAudio.controls = true;
+    sampleAudio.preload = 'none';
+    sampleWrap.appendChild(sampleLabel);
+    sampleWrap.appendChild(sampleAudio);
+    if (release.sample) {
+      sampleAudio.src = release.sample;
+      sampleWrap.classList.add('has-sample');
+    }
+
+    function closePreview() {
+      previewOverlay.classList.remove('is-open');
+      iframe.src = '';
+    }
+    previewBtn.addEventListener('click', function () {
+      if (previewOverlay.classList.contains('is-open')) {
+        closePreview();
+      } else {
+        previewOverlay.classList.add('is-open');
+        iframe.src = embedSrc(release);
+        sampleAudio.pause();
+      }
+    });
+    closeBtn.addEventListener('click', closePreview);
+    sampleAudio.addEventListener('play', closePreview);
+
+    copy.appendChild(badge);
+    copy.appendChild(title);
+    copy.appendChild(meta);
+    copy.appendChild(tags);
+    copy.appendChild(eq);
+    copy.appendChild(btnRow);
+    copy.appendChild(sampleWrap);
+    card.appendChild(coverWrap);
+    card.appendChild(copy);
+
+    buildEqBars(eq, '#66E7FF', 30);
+    return card;
+  }
+  var featuredList = document.getElementById('featured-list');
+  FEATURED_RELEASES.forEach(function (release) { featuredList.appendChild(buildFeaturedCard(release)); });
 
   // ---- Featured Tracks spotlight (the Spotify embed below can only show tracks that are actually on Spotify) ----
   document.getElementById('spotlight-cover').src = FEATURED.cover;
@@ -521,26 +616,9 @@
   document.getElementById('spotlight-title').textContent = FEATURED.title;
   document.getElementById('tracks-spotlight').addEventListener('click', function () { openRelease(FEATURED); });
 
-  function playFeatured() {
-    var preview = document.getElementById('feat-preview');
-    var iframe = document.getElementById('feat-iframe');
-    if (preview.classList.contains('is-open')) {
-      preview.classList.remove('is-open');
-      iframe.src = '';
-    } else {
-      preview.classList.add('is-open');
-      iframe.src = embedSrc(FEATURED);
-      document.getElementById('feat-sample').pause();
-    }
-  }
-  document.getElementById('feat-sample').addEventListener('play', closeFeatured);
   document.getElementById('modal-sample').addEventListener('play', function () {
     document.getElementById('modal-player').innerHTML = '';
   });
-  function closeFeatured() {
-    document.getElementById('feat-preview').classList.remove('is-open');
-    document.getElementById('feat-iframe').src = '';
-  }
 
   // ---- All-releases grid and detail dialog ----
   // Newest releases show directly; older ones sit behind the "earlier releases" dropdown so the

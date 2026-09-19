@@ -23,12 +23,19 @@ though a server is closer to how it behaves deployed.
 
 ## Editing releases
 
-Release data lives in one place — the `FEATURED` and `RELEASES` arrays near the top
-of the `<script>` block in `index.html`. The featured card and the "All Releases"
-grid are both built from `RELEASES`; give a release its own named `var` (e.g.
-`var SPENT_IT_RIGHT = {...}`) and include that same object in `RELEASES`, so a
-release that's both featured and in the grid can't drift out of sync. Point
-`FEATURED` at whichever release object is currently featured.
+Release data lives in one place — the `FEATURED_RELEASES` and `RELEASES` arrays
+near the top of the `<script>` block in `index.html`. Give a release its own
+named `var` (e.g. `var SPENT_IT_RIGHT = {...}`) and include that same object in
+`RELEASES`, so a release that's both featured and in the grid can't drift out
+of sync.
+
+`FEATURED_RELEASES` is the ordered list of releases that get their own glass
+card in the "Latest Releases" section — normally the newest few. Add or remove
+entries there to change what's featured; each gets its own independent preview
+player and sample audio, so they don't interfere with each other. `FEATURED`
+(singular) is just `FEATURED_RELEASES[0]` — the single newest release — and
+drives things that only make sense for one release, like the Featured Tracks
+spotlight card.
 
 Each release needs **either** a Spotify album id **or** a YouTube video id (not
 both are required) — the site plays whichever one is present, and hides the
