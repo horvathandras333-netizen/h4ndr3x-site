@@ -117,7 +117,9 @@ This turns the range into something legible rather than something that looks unf
 
 **Blocked / partially applied:** this list doesn't match the live site. The actual catalog is `SPENT IT RIGHT` (featured) plus `ADRENALINE`, `MY FOUNDATION`, `THE PRESSURE`, `NEON DETONATE`, `FINALLY BREATHING`, `FEARLESS`, `BRASSLINE` in the grid — none of "Sunfire," "I Found You in the Static," or "Still You Wanted More" exist in `index.html`. Per-track genres aren't something Claude can infer from titles alone.
 
-For now, only removed the leftover `Drum & Bass` tag from Spent It Right's meta line (`Single — 2026 · Drum & Bass` → `Single — 2026`), matching the rest of the rebrand. No new genre tags added to any card yet — still needs real genre input per track before this item can be closed out.
+For now, only removed the leftover `Drum & Bass` tag from Spent It Right's meta line (`Single — 2026 · Drum & Bass` → `Single — 2026`), matching the rest of the rebrand. No new genre tags added to any card yet.
+
+Direction confirmed: labels are optional and freeform per track, no fixed list, no filter UI until the catalogue is bigger — see the improvement-ideas doc, item 6. Still needs the artist to supply actual per-track labels; none given yet.
 
 - [ ] Applied
 
