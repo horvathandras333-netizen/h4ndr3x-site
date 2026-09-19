@@ -92,6 +92,13 @@
   .sample-wrap.has-sample { display:flex; }
   .sample-label { font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:#5a6474; }
   .sample-audio { width:100%; height:36px; border-radius:100px; color-scheme:dark; }
+  .spotlight-card { display:flex; align-items:center; gap:16px; width:100%; text-align:left; margin-bottom:20px; padding:14px 20px; border-radius:16px; background:rgba(74,168,255,0.08); border:1px solid rgba(102,231,255,0.3); color:#fff; cursor:pointer; font-family:inherit; transition:border-color 0.3s ease, background 0.3s ease; }
+  .spotlight-card:hover, .spotlight-card:focus-visible { border-color:rgba(102,231,255,0.6); background:rgba(74,168,255,0.14); }
+  .spotlight-cover { width:56px; height:56px; border-radius:10px; object-fit:cover; flex:none; }
+  .spotlight-copy { display:flex; flex-direction:column; gap:4px; min-width:0; }
+  .spotlight-eyebrow { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#66E7FF; }
+  .spotlight-title { font-weight:600; font-size:16px; letter-spacing:0.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .spotlight-cta { margin-left:auto; flex:none; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#B8C0CC; }
   .play-btn { width:38px; height:38px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; border:1px solid rgba(74,168,255,0.4); color:#66E7FF; font-size:13px; }
 
   .preview-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.75); display:none; align-items:center; justify-content:center; }
@@ -290,6 +297,14 @@
   <!-- FEATURED TRACKS / streaming -->
   <section id="tracks" class="section" style="padding:100px 32px 60px;">
     <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;margin:0 0 44px;">Featured Tracks</h2>
+    <button type="button" id="tracks-spotlight" class="spotlight-card" aria-label="Open release details">
+      <img id="spotlight-cover" class="spotlight-cover" width="72" height="72" alt="">
+      <span class="spotlight-copy">
+        <span id="spotlight-eyebrow" class="spotlight-eyebrow"></span>
+        <span id="spotlight-title" class="spotlight-title"></span>
+      </span>
+      <span class="spotlight-cta">Preview ↗</span>
+    </button>
     <div id="embed-shell" style="border-radius:24px;overflow:hidden;background:rgba(17,17,17,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);box-shadow:0 30px 80px rgba(0,0,0,0.5);">
       <button id="load-embed" style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;width:100%;height:380px;background:transparent;border:0;cursor:pointer;color:#fff;font-family:'Space Grotesk',sans-serif;">
         <span class="glow-btn" aria-hidden="true" style="width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,#4AA8FF,#0B3D91);display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 0 44px rgba(74,168,255,0.4);">▶</span>
@@ -485,6 +500,13 @@
   document.getElementById('feat-tags').innerHTML = tagRowHtml(FEATURED);
   document.getElementById('feat-youtube').href = youtubeUrl(FEATURED);
   setSample('feat-sample-wrap', 'feat-sample', FEATURED);
+
+  // ---- Featured Tracks spotlight (the Spotify embed below can only show tracks that are actually on Spotify) ----
+  document.getElementById('spotlight-cover').src = FEATURED.cover;
+  document.getElementById('spotlight-cover').alt = FEATURED.title + ' — cover art';
+  document.getElementById('spotlight-eyebrow').textContent = FEATURED.id ? 'Latest release' : 'Latest release — not on Spotify yet';
+  document.getElementById('spotlight-title').textContent = FEATURED.title;
+  document.getElementById('tracks-spotlight').addEventListener('click', function () { openRelease(FEATURED); });
 
   function playFeatured() {
     var preview = document.getElementById('feat-preview');

@@ -177,6 +177,7 @@ The release system previously assumed every track had a Spotify album id. Genera
 - Stats block `Releases` count bumped `8+` → `9+` to match the catalogue.
 - All Releases subtitle changed from "Opens Spotify player inline" (no longer universally true) to "Opens an inline player".
 - **Full-track audio sample** (same day, follow-up): the artist supplied `Break the Frame.mp3` (3:36, matches the video exactly) from Downloads. Added an optional `sample` field to the release data model — when set, a native `<audio controls>` "Full track" player appears on the featured card and the release modal; absent everywhere else, no placeholder. Starting the video preview pauses the audio sample and starting the sample stops the video preview, so they can't overlap. Saved as `assets/audio-break-the-frame.mp3` (4.8 MB). See README's "Editing releases" section for the field format.
+- **Featured Tracks spotlight** (same day, follow-up): the artist noticed "Break the Frame" wasn't showing in the "Featured Tracks" section and asked for it to be spotlighted there. That section's player is a live Spotify artist embed, which structurally can only show tracks actually on Spotify — it was never going to show a YouTube-only release. Added a small clickable spotlight card above the embed, driven by `FEATURED` (cover, title, and an eyebrow that reads "not on Spotify yet" only when `FEATURED.id` is absent) — clicking it opens the same release-details modal as everywhere else. Automatically follows whichever release is `FEATURED` next, no manual upkeep needed.
 
 - [x] Applied
 
