@@ -49,6 +49,12 @@ and no tag renders — no "unclassified" placeholder. H4NDR3X is intentionally
 genre-open, so don't group releases by genre or add filter UI for this until
 the catalogue is much larger.
 
+`sample` is an optional path to a full-length MP3 (e.g. `assets/audio-name.mp3`)
+— when set, a native `<audio controls>` player labeled "Full track" appears on
+that release's featured card and its modal; leave it off and nothing renders.
+Starting the featured video/Spotify preview pauses the sample player and vice
+versa, so they can't play over each other.
+
 The `id` is the album ID from a Spotify share link (`open.spotify.com/album/<THIS_PART>`);
 the `youtubeId` is the `v=` parameter from a YouTube watch link. Cover art goes
 in `assets/` as a square JPG — for a release whose only art is a 16:9 YouTube

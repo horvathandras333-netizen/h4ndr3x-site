@@ -171,11 +171,12 @@ The release system previously assumed every track had a Spotify album id. Genera
 - Featured "Preview" and the release-details modal play whichever is present — Spotify embed if `id`, YouTube embed if `youtubeId`.
 - The modal's "Open in Spotify" button is hidden entirely for a release with no `id`, rather than pointing at a broken link.
 - "YouTube" buttons/links point at that release's specific video when `youtubeId` is set, falling back to the general channel videos page otherwise.
-- Cover art: no dedicated square art existed, so the official YouTube thumbnail (16:9) was downloaded and composited onto a square canvas with a blurred, darkened fill rather than hard-cropped — a straight crop would have clipped the title text baked into the thumbnail. Saved as `assets/cover-break-the-frame.jpg`.
+- Cover art: initially composited from the 16:9 YouTube thumbnail (blurred square fill) since no dedicated art existed yet. Superseded same day once the artist supplied the real 1:1 cover (`ChatGPT Image Sep 19, 2026, 10_51_46 AM.png` from Downloads) — same Shibuya-crossing artwork, properly composed as a square. Saved as `assets/cover-break-the-frame.jpg`.
 - Genre/mood tags: set `genre: 'Rap-Rock'` and `mood: 'Defiant'` on this release, using the video's own hashtags (`#RapRock #JRock`) and description (rejecting expectations, defiance) as the source — the artist's own words, not invented. First release to actually use the optional-tag mechanism from item 8.
 - Visuals section's single tile now features this video specifically (own thumbnail + direct link) instead of the generic "visit the channel" tile — a first step on the improvement-ideas doc's item 3.
 - Stats block `Releases` count bumped `8+` → `9+` to match the catalogue.
 - All Releases subtitle changed from "Opens Spotify player inline" (no longer universally true) to "Opens an inline player".
+- **Full-track audio sample** (same day, follow-up): the artist supplied `Break the Frame.mp3` (3:36, matches the video exactly) from Downloads. Added an optional `sample` field to the release data model — when set, a native `<audio controls>` "Full track" player appears on the featured card and the release modal; absent everywhere else, no placeholder. Starting the video preview pauses the audio sample and starting the sample stops the video preview, so they can't overlap. Saved as `assets/audio-break-the-frame.mp3` (4.8 MB). See README's "Editing releases" section for the field format.
 
 - [x] Applied
 
