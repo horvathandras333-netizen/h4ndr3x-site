@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>H4NDR3X — Producer</title>
-<meta name="description" content="H4NDR3X — a human-AI production project. Every lyric written by hand. Listen on Spotify and YouTube.">
+<meta name="description" content="Discover H4NDR3X: human-led songwriting, AI-assisted production and music without fixed genre boundaries. Listen on Spotify and YouTube.">
 <link rel="canonical" href="https://h4ndr3x.com/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="H4NDR3X — Producer">
@@ -267,9 +267,9 @@
   <section id="about" class="section" style="padding:60px 32px 60px;">
     <div style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:28px;max-width:900px;margin:0 auto;">
       <span style="font-size:11px;letter-spacing:0.4em;text-transform:uppercase;color:#4AA8FF;">About</span>
-      <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;line-height:1.05;margin:0;">Written by hand.<br>Built with machines.</h2>
+      <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;line-height:1.05;margin:0;">Human-led.<br>Built with AI.</h2>
       <p style="margin:0;color:#B8C0CC;font-size:17px;line-height:1.85;max-width:780px;">
-        H4NDR3X is a human-AI production project. Every lyric is written by hand. The machines fill in around them, and nothing ships until it has been argued with. The genre moves from one release to the next — that part is deliberate. The method doesn't.
+        H4NDR3X is my music project, combining lyrics I write with AI-assisted refinement and production. I shape the words, steer the sound and decide what makes the final cut. Each release can take a different direction—there are no fixed genre boundaries.
       </p>
       <div class="stats" style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">1</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Producer</div></div>
@@ -390,7 +390,9 @@
 <script>
   // ---- Single source of truth for releases (cover, title, meta, Spotify album id) ----
   var FEATURED = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
+  // FEATURED is included by reference so its All Releases card stays in sync with the featured card.
   var RELEASES = [
+    FEATURED,
     { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026', accent: '#4AA8FF' },
     { id: '5Jq7sgYSXUt7v03M2wqKc9', cover: 'assets/cover-my-foundation.jpg', title: 'MY FOUNDATION', meta: 'Single — 2026 · Radio Edit', accent: '#87B3FF' },
     { id: '3LTnw7cPkwEOA6KqZA2FCT', cover: 'assets/cover-the-pressure.jpg', title: 'THE PRESSURE', meta: 'Single — 2026', accent: '#B5C2D8' },

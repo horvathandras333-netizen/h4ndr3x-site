@@ -8,6 +8,8 @@ Repository: https://github.com/horvathandras333-netizen/h4ndr3x-site
 
 These recommendations are based on a review of the repository's `index.html`, rather than a visual inspection of the live website. The existing code includes a black-and-electric-blue identity, animated backgrounds, an artist portrait, release artwork and Spotify previews. The aim is to build on that style and make the music itself more prominent.
 
+**Lyric-writing description (2026-09-19):** the site's copy previously overstated this as "every lyric written by hand" / "100% human lyrics." Corrected: the artist writes the lyrics, AI helps develop and refine them. Current About copy: heading `Human-led. Built with AI.`, body describes lyrics the artist writes with "AI-assisted refinement and production," and that they "shape the words, steer the sound and decide what makes the final cut." See [h4ndr3x-site-rebrand-changes.md](h4ndr3x-site-rebrand-changes.md) for the full history of this correction.
+
 ## 1. Put the latest track on the opening screen
 
 Currently, visitors see branding and external Spotify/YouTube links, with About appearing before the music. Bring the featured release, currently **SPENT IT RIGHT**, its artwork and a play button into the first screen. Move About further down so visitors can hear the music sooner.
@@ -58,4 +60,8 @@ The code already supports per-release accent colours, but most stay within simil
 2. **Persistent mini-player:** keep the music playing while visitors explore.
 3. **Video gallery:** give visitors compelling visuals alongside the sound.
 
-These are recommendations only; no website or repository changes have been made.
+## Status summary (2026-09-19)
+
+- **Done:** item 1 (section reorder only — no hero redesign), item 6 (label mechanism — no labels added yet).
+- **Partially done:** none beyond the above; item 1's hero-embed variant and item 6's actual per-track labels remain open.
+- **Not started:** items 2, 3, 4, 5, 7, 8, 9, 10 — each needs real assets, content or a service decision from the artist (audio, video, lyrics/process notes, a mailing-list provider, next-release art/date, or per-release visual treatments) before implementation.
