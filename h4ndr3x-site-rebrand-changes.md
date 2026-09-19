@@ -88,9 +88,9 @@ Applied the primary option (line promoted to hero, removed from About body). The
 
 Note: if change 3 is applied, "Machines generate. H4NDR3X decides." comes out of here so it doesn't appear twice on one page.
 
-**Superseded (2026-09-19):** "Every lyric is written by hand" overstated it — AI helps develop and refine the lyrics too. Live paragraph is now:
+**Superseded (2026-09-19):** "Every lyric is written by hand" overstated it — AI helps develop and refine the lyrics too. Live paragraph, revised same day to state the genre-open philosophy more directly:
 
-> H4NDR3X is my music project, combining lyrics I write with AI-assisted refinement and production. I shape the words, steer the sound and decide what makes the final cut. Each release can take a different direction—there are no fixed genre boundaries.
+> H4NDR3X is my music project, combining lyrics I write with AI-assisted refinement and production. I shape the words, steer the sound and decide what makes the final cut. Good music is good music — genre is just where a track happens to land. One release might hit like drum and bass, the next might sit closer to dark R&B or something anime-inspired. I don't chase a sound or stay inside one. I follow the song, and if it's worth hearing, it gets made.
 
 - [x] Applied (current text differs from the original proposal above — see superseded note)
 
