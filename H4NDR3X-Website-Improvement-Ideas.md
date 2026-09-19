@@ -66,7 +66,7 @@ The code already supports per-release accent colours, but most stay within simil
 
 ## Status summary (2026-09-19)
 
-- **Done:** item 3 (real 3-video gallery), item 6 (label mechanism, now used by 3 releases: Taking It Well, Leave It Till the Morning, Break the Frame).
+- **Done:** item 3 (real 3-video gallery), item 6 (label mechanism, now used by 4 releases: Taking It Well, Leave It Till the Morning, Break the Frame, No Grand Design — a 5th, Sparks in the Dark, was deliberately left untagged since its description names no clear genre/mood).
 - **Partially done:** item 1 (section reorder done, hero-embed variant not attempted), item 2 (full-track audio players exist per-release, but not pinned/persistent across the site — the idea's core ask).
 - **Not started:** items 4, 5, 7, 8, 9, 10 — each needs real assets, content or a service decision from the artist (lyrics/process notes, a mailing-list provider, next-release art/date, or per-release visual treatments) before implementation.
-- **Not from this list, but shipped anyway:** the All Releases grid now splits into the 4 newest releases (shown directly) and the 7 older ones (collapsed behind a "Show N earlier releases" dropdown), at the artist's request, to keep focus on current material as the catalogue grows.
+- **Not from this list, but shipped anyway:** the All Releases grid now splits into the 4 newest releases (shown directly) and the 9 older ones (collapsed behind a "Show N earlier releases" dropdown), at the artist's request, to keep focus on current material as the catalogue grows. Also closed a catalogue gap: two older videos ("No Grand Design," "Sparks in the Dark") existed on YouTube but were never added to the site — both are in now.

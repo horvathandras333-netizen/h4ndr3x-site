@@ -201,6 +201,21 @@ Artist released two more YouTube-only singles the same day: **Taking It Well** (
 
 ---
 
+## 13. Catalogue gap — "No Grand Design" and "Sparks in the Dark" (2026-09-19)
+
+While researching the two newest releases, noticed the artist's channel had two older videos (~4 months old, April 2026) that were never added to the site at all: **No Grand Design** (`svJbG1zT8S8`) and **Sparks in the Dark** (`QIHhqhCQ_X8`). Flagged it; artist confirmed to add both. Neither is on Spotify, so both follow the `youtubeId` pattern from item 11. Both land in `RELEASES` only (older tier, inside the "earlier releases" dropdown) — neither is anywhere near recent enough to be `FEATURED`.
+
+- `NO GRAND DESIGN`: `genre: 'Liquid DnB'`, `mood: 'Emotional'` — both directly from the video's own description ("deep, emotional drum and bass track... liquid DnB energy").
+- `SPARKS IN THE DARK`: no `genre`/`mood` set. Its description talks about connection and memory but never names a genre or a single clear mood word the way the other tagged tracks do — left untagged rather than guess, per the site's "optional, no placeholder" convention.
+- No `sample` (full-track MP3) for either — unlike the two newest releases, no matching audio file was available in the artist's Downloads folder for these older tracks.
+- Cover art: neither had dedicated square art (unlike Taking It Well / Leave It Till the Morning, which already had ChatGPT-generated 1:1 covers waiting). Both composited from their 16:9 YouTube thumbnails with the same blurred-fill technique as the original Break the Frame fallback (item 11), since a hard crop risked clipping their thumbnail text/composition.
+- Stats `Releases` bumped `11+` → `13+`.
+- Not added to the Visuals gallery (`VIDEOS` array) — kept that at 3 curated/current videos per the original improvement-ideas ask; both are still reachable via "All videos ↗" and the All Releases dropdown.
+
+- [x] Applied
+
+---
+
 ## Not changing
 
 - Visual design. Dark, technical and precise reads as "producer" more than "drum and bass" — the words were doing the pinning, not the styling.
