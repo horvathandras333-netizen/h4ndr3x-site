@@ -12,6 +12,8 @@ These recommendations are based on a review of the repository's `index.html`, ra
 
 Currently, visitors see branding and external Spotify/YouTube links, with About appearing before the music. Bring the featured release, currently **SPENT IT RIGHT**, its artwork and a play button into the first screen. Move About further down so visitors can hear the music sooner.
 
+**Partially implemented** (2026-09-19): the Latest Releases section (with the featured card, artwork and play button) now comes right after the hero, before About — reordering existing sections only. A tighter version embedding the featured card inside the hero viewport itself would need a hero-layout redesign, not attempted here.
+
 ## 2. Add a persistent mini-player
 
 The current release previews sit inside pop-ups, and closing them stops playback. A player pinned to the bottom of the screen would let visitors listen while exploring the catalogue. Uploaded audio previews would provide more control over playback and presentation. Include artwork, track title, play/pause and progress controls, with playback starting only after the visitor chooses to listen.
@@ -32,7 +34,7 @@ The equaliser bars currently run on repeating animations independently of playba
 
 H4NDR3X is deliberately genre-open — the catalogue already spans drum and bass, electronic, breakbeat, dark alternative R&B, and Japanese-English anime-inspired tracks, with more genres to come. No fixed genre or predefined label list. Keep the catalogue section as **"All Releases,"** not genre-split. Each track can carry its own optional label(s), freely added, no fixed set. Hold off on filter UI until there are enough releases for it to be useful — the labels alone are enough for now.
 
-Blocked on: per-track labels (needs the artist's input, one/two words per track — none supplied yet).
+**Implemented** (2026-09-19): any release can take optional `genre`/`mood` strings, rendered as tag chips on its card, modal and (if `FEATURED`) the Latest Releases card; nothing shows when absent. See [h4ndr3x-site-rebrand-changes.md](h4ndr3x-site-rebrand-changes.md) item 8. Still blocked on the artist supplying actual per-track labels — that's content, not code.
 
 ## 7. Show a little of the creative process
 

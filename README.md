@@ -32,6 +32,13 @@ Adding a track means adding one object:
 { id: 'SPOTIFY_ALBUM_ID', cover: 'assets/cover-name.jpg', title: 'TITLE', meta: 'Single — 2026' }
 ```
 
+`genre` and `mood` are optional freeform strings — add either (or both) to show
+a small tag chip on that release's card, modal and (for `FEATURED`) the Latest
+Releases card. There's no predefined list; write whatever fits. Leave them off
+and no tag renders — no "unclassified" placeholder. H4NDR3X is intentionally
+genre-open, so don't group releases by genre or add filter UI for this until
+the catalogue is much larger.
+
 The `id` is the album ID from a Spotify share link:
 `open.spotify.com/album/<THIS_PART>`. Cover art goes in `assets/` as a square JPG.
 

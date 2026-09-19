@@ -119,9 +119,11 @@ This turns the range into something legible rather than something that looks unf
 
 For now, only removed the leftover `Drum & Bass` tag from Spent It Right's meta line (`Single — 2026 · Drum & Bass` → `Single — 2026`), matching the rest of the rebrand. No new genre tags added to any card yet.
 
-Direction confirmed: labels are optional and freeform per track, no fixed list, no filter UI until the catalogue is bigger — see the improvement-ideas doc, item 6. Still needs the artist to supply actual per-track labels; none given yet.
+Direction confirmed: labels are optional and freeform per track, no fixed list, no filter UI until the catalogue is bigger — see the improvement-ideas doc, item 6.
 
-- [ ] Applied
+**Mechanism implemented.** Any release object in `index.html` can now take optional `genre`/`mood` strings, rendered as tag chips on its card, its release-details modal, and (for `FEATURED`) the Latest Releases card — nothing renders when absent, no "unclassified" placeholder. No labels have been added to any track yet; that's a separate content task for whenever the artist supplies them, not a blocker on this item.
+
+- [x] Applied (mechanism); labels themselves are a future content task
 
 ---
 
