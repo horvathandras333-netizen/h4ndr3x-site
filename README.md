@@ -61,9 +61,16 @@ in `assets/` as a square JPG — for a release whose only art is a 16:9 YouTube
 thumbnail, composite it onto a square canvas (e.g. blurred fill top/bottom)
 rather than hard-cropping it, so text in the thumbnail doesn't get clipped.
 
-The Visuals tile is driven by the `FEATURED_VIDEO` object (`url` + `label`) —
-independent from the release data, so it can feature any video regardless of
-which release is currently `FEATURED`.
+The Visuals section is a gallery driven by the `VIDEOS` array (`title`,
+`youtubeId`, `thumb`) — independent from the release data, so it can feature
+any video regardless of which release is currently `FEATURED`. Add an entry
+to feature another video; each renders its own tile linking straight to that
+video.
+
+The All Releases grid shows the `RECENT_COUNT` newest entries in `RELEASES`
+directly and collapses the rest behind a "Show N earlier releases" dropdown,
+so the grid stays focused on current material as the catalogue grows. Bump
+`RECENT_COUNT` in `index.html` as new releases push older ones down.
 
 The mailing-list CTA uses `booking@h4ndr3x.com`; update that `mailto:` link if
 you use a different inbox or add a dedicated mailing-list service. There is no

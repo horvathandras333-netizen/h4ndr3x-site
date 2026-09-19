@@ -99,6 +99,13 @@
   .spotlight-eyebrow { font-size:10px; letter-spacing:0.16em; text-transform:uppercase; color:#66E7FF; }
   .spotlight-title { font-weight:600; font-size:16px; letter-spacing:0.02em; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
   .spotlight-cta { margin-left:auto; flex:none; font-size:11px; letter-spacing:0.14em; text-transform:uppercase; color:#B8C0CC; }
+  #older-releases:not([open]) { margin-top:0; }
+  #older-releases[open] { margin-top:8px; }
+  .older-toggle { display:inline-flex; align-items:center; gap:10px; margin-top:28px; padding:13px 26px; border-radius:100px; border:1px solid rgba(255,255,255,0.12); background:rgba(255,255,255,0.03); font-size:12px; letter-spacing:0.18em; text-transform:uppercase; color:#B8C0CC; cursor:pointer; list-style:none; transition:border-color 0.3s ease, color 0.3s ease; }
+  .older-toggle::-webkit-details-marker { display:none; }
+  .older-toggle:hover { border-color:rgba(102,231,255,0.55); color:#fff; }
+  .older-toggle::after { content:'▾'; transition:transform 0.3s ease; }
+  #older-releases[open] .older-toggle::after { transform:rotate(180deg); }
   .play-btn { width:38px; height:38px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; border:1px solid rgba(74,168,255,0.4); color:#66E7FF; font-size:13px; }
 
   .preview-overlay { position:absolute; inset:0; background:rgba(0,0,0,0.75); display:none; align-items:center; justify-content:center; }
@@ -288,7 +295,7 @@
       </p>
       <div class="stats" style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">1</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Producer</div></div>
-        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">9+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
+        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">11+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">2026</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Active</div></div>
       </div>
     </div>
@@ -323,6 +330,10 @@
     <h2 style="font-weight:700;font-size:clamp(24px,3vw,40px);letter-spacing:0.03em;margin:0 0 12px;">All Releases</h2>
     <p style="color:#5a6474;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 40px;">Click any card to preview · Opens an inline player</p>
     <div id="releases-grid" class="release-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;perspective:1200px;"></div>
+    <details id="older-releases">
+      <summary id="older-releases-toggle" class="older-toggle"></summary>
+      <div id="older-releases-grid" class="release-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;perspective:1200px;margin-top:28px;"></div>
+    </details>
   </section>
 
   <!-- VIDEOS -->
@@ -331,14 +342,8 @@
       <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;margin:0;">Visuals</h2>
       <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" style="font-size:12px;letter-spacing:0.22em;text-transform:uppercase;color:#4AA8FF;">All videos ↗</a>
     </div>
-    <p style="color:#B8C0CC;font-size:14px;margin:0 0 32px;">Visit the H4NDR3X channel for the latest videos and visualisers.</p>
-    <div class="video-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
-      <a id="featured-video" href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="vid-tile" aria-label="Open the H4NDR3X YouTube channel in a new tab" style="background:linear-gradient(150deg,rgba(5,5,5,0.25),rgba(5,5,5,0.88)),url('assets/video-break-the-frame.jpg') center/cover;">
-        <span class="vid-grid" aria-hidden="true"></span>
-        <span class="vid-play" aria-hidden="true">▶</span>
-        <span id="featured-video-label" class="vid-label">Visit H4NDR3X on YouTube ↗</span>
-      </a>
-    </div>
+    <p style="color:#B8C0CC;font-size:14px;margin:0 0 32px;">Watch on the H4NDR3X channel, or right here.</p>
+    <div id="video-list" class="video-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;"></div>
   </section>
 
   <!-- NEXT / upcoming -->
@@ -416,11 +421,15 @@
 
 <script>
   // ---- Single source of truth for releases (cover, title, meta, and either a Spotify album id or a YouTube video id) ----
+  var TAKING_IT_WELL = { youtubeId: 'f7NkQbZxwZU', cover: 'assets/cover-taking-it-well.jpg', title: 'TAKING IT WELL', meta: 'Single — 2026 · YouTube', accent: '#FF6FA8', genre: 'Drum & Bass', mood: 'Euphoric', sample: 'assets/audio-taking-it-well.mp3' };
+  var LEAVE_IT_TILL_THE_MORNING = { youtubeId: '1HzFskN_3GY', cover: 'assets/cover-leave-it-till-the-morning.jpg', title: 'LEAVE IT TILL THE MORNING', meta: 'Single — 2026 · YouTube', accent: '#E8B36A', genre: 'Alternative', mood: 'Heartbreak', sample: 'assets/audio-leave-it-till-the-morning.mp3' };
   var BREAK_THE_FRAME = { youtubeId: 'KJ9i0ow6Eyw', cover: 'assets/cover-break-the-frame.jpg', title: 'BREAK THE FRAME', meta: 'Single — 2026 · YouTube', accent: '#5EC8FF', genre: 'Rap-Rock', mood: 'Defiant', sample: 'assets/audio-break-the-frame.mp3' };
   var SPENT_IT_RIGHT = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
-  var FEATURED = BREAK_THE_FRAME;
+  var FEATURED = TAKING_IT_WELL;
   // FEATURED is included by reference so its All Releases card stays in sync with the featured card.
   var RELEASES = [
+    TAKING_IT_WELL,
+    LEAVE_IT_TILL_THE_MORNING,
     BREAK_THE_FRAME,
     SPENT_IT_RIGHT,
     { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026', accent: '#4AA8FF' },
@@ -431,10 +440,12 @@
     { id: '4pjNdt1CHWmZ5fybRno67Q', cover: 'assets/cover-fearless.jpg', title: 'FEARLESS', meta: 'Single — 2026', accent: '#7F94BB' },
     { id: '5N2JPuFoprTtw9AqT3k4hO', cover: 'assets/cover-brassline.jpg', title: 'BRASSLINE', meta: 'Single — 2026 · Radio Edit', accent: '#73B6E6' }
   ];
-  var FEATURED_VIDEO = {
-    url: 'https://www.youtube.com/watch?v=KJ9i0ow6Eyw',
-    label: 'Watch "Break the Frame" ↗'
-  };
+  // ---- Videos gallery (Visuals section) ----
+  var VIDEOS = [
+    { title: 'Taking It Well', youtubeId: 'f7NkQbZxwZU', thumb: 'assets/video-taking-it-well.jpg' },
+    { title: 'Leave It Till the Morning', youtubeId: '1HzFskN_3GY', thumb: 'assets/video-leave-it-till-the-morning.jpg' },
+    { title: 'Break the Frame', youtubeId: 'KJ9i0ow6Eyw', thumb: 'assets/video-break-the-frame.jpg' }
+  ];
 
   // ---- Equalizer bars ----
   function buildEqBars(container, color, count) {
@@ -530,8 +541,10 @@
   }
 
   // ---- All-releases grid and detail dialog ----
-  var grid = document.getElementById('releases-grid');
-  RELEASES.forEach(function (release) {
+  // Newest releases show directly; older ones sit behind the "earlier releases" dropdown so the
+  // grid stays focused on what's current. Bump RECENT_COUNT as new releases push old ones down.
+  var RECENT_COUNT = 4;
+  function buildReleaseCard(release) {
     var card = document.createElement('div');
     card.className = 'rel-card';
     card.style.setProperty('--accent', release.accent);
@@ -554,8 +567,18 @@
         openRelease(release);
       }
     });
-    grid.appendChild(card);
-  });
+    return card;
+  }
+  var grid = document.getElementById('releases-grid');
+  var olderGrid = document.getElementById('older-releases-grid');
+  RELEASES.slice(0, RECENT_COUNT).forEach(function (release) { grid.appendChild(buildReleaseCard(release)); });
+  var olderReleases = RELEASES.slice(RECENT_COUNT);
+  if (olderReleases.length) {
+    document.getElementById('older-releases-toggle').textContent = 'Show ' + olderReleases.length + ' earlier release' + (olderReleases.length === 1 ? '' : 's');
+    olderReleases.forEach(function (release) { olderGrid.appendChild(buildReleaseCard(release)); });
+  } else {
+    document.getElementById('older-releases').style.display = 'none';
+  }
 
   var modal = document.getElementById('release-modal');
   function openRelease(release) {
@@ -605,8 +628,22 @@
       menuToggle.setAttribute('aria-label', 'Open navigation menu');
     });
   });
-  document.getElementById('featured-video').href = FEATURED_VIDEO.url;
-  document.getElementById('featured-video-label').textContent = FEATURED_VIDEO.label;
+  // ---- Videos gallery ----
+  var videoList = document.getElementById('video-list');
+  VIDEOS.forEach(function (video) {
+    var tile = document.createElement('a');
+    tile.href = 'https://www.youtube.com/watch?v=' + video.youtubeId;
+    tile.target = '_blank';
+    tile.rel = 'noopener';
+    tile.className = 'vid-tile';
+    tile.setAttribute('aria-label', 'Watch "' + video.title + '" on YouTube');
+    tile.style.background = "linear-gradient(150deg,rgba(5,5,5,0.25),rgba(5,5,5,0.88)),url('" + video.thumb + "') center/cover";
+    tile.innerHTML =
+      '<span class="vid-grid" aria-hidden="true"></span>' +
+      '<span class="vid-play" aria-hidden="true">▶</span>' +
+      '<span class="vid-label">' + escapeHtml(video.title) + ' ↗</span>';
+    videoList.appendChild(tile);
+  });
 
   // ---- Spotify artist embed (load on click) ----
   document.getElementById('load-embed').addEventListener('click', function () {

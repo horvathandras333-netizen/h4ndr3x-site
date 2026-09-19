@@ -20,11 +20,13 @@ Currently, visitors see branding and external Spotify/YouTube links, with About 
 
 The current release previews sit inside pop-ups, and closing them stops playback. A player pinned to the bottom of the screen would let visitors listen while exploring the catalogue. Uploaded audio previews would provide more control over playback and presentation. Include artwork, track title, play/pause and progress controls, with playback starting only after the visitor chooses to listen.
 
+**Adjacent progress** (2026-09-19): the "uploaded audio" building block this idea needs now exists — YouTube-only releases can carry an optional `sample` (full-track MP3), rendered as a native `<audio controls>` player on the featured card and release modal. Not pinned/persistent yet, and doesn't survive navigating away or opening another release — this idea's actual ask (a bottom-pinned player that keeps playing while browsing) is still not started.
+
 ## 3. Turn Visuals into a video gallery
 
 The Visuals section currently contains one tile linking to the YouTube channel. Feature individual music videos or visualisers with their own thumbnails and playback on the site. Three strong videos would make this section feel more substantial. Load video players when selected to keep the page lightweight.
 
-**Partially implemented** (2026-09-19): the single tile now features a specific video ("Break the Frame") with its own thumbnail and a direct link, instead of the generic channel tile. Still just one tile, not a gallery — needs two more videos (with thumbnails) to become the multi-tile gallery this idea describes.
+**Implemented** (2026-09-19): the section is now a real 3-tile gallery — "Taking It Well," "Leave It Till the Morning" and "Break the Frame" — each with its own thumbnail and a direct link, driven by a `VIDEOS` array rather than one hardcoded tile. Matches this idea's own "three strong videos" suggestion exactly. Adding a fourth+ video is just appending to `VIDEOS`.
 
 ## 4. Give each song a proper release page
 
@@ -64,6 +66,7 @@ The code already supports per-release accent colours, but most stay within simil
 
 ## Status summary (2026-09-19)
 
-- **Done:** item 6 (label mechanism, plus one release — "Break the Frame" — actually using it).
-- **Partially done:** item 1 (section reorder done, hero-embed variant not attempted), item 3 (one tile now features a real video, not yet a multi-video gallery).
-- **Not started:** items 2, 4, 5, 7, 8, 9, 10 — each needs real assets, content or a service decision from the artist (audio, more videos, lyrics/process notes, a mailing-list provider, next-release art/date, or per-release visual treatments) before implementation.
+- **Done:** item 3 (real 3-video gallery), item 6 (label mechanism, now used by 3 releases: Taking It Well, Leave It Till the Morning, Break the Frame).
+- **Partially done:** item 1 (section reorder done, hero-embed variant not attempted), item 2 (full-track audio players exist per-release, but not pinned/persistent across the site — the idea's core ask).
+- **Not started:** items 4, 5, 7, 8, 9, 10 — each needs real assets, content or a service decision from the artist (lyrics/process notes, a mailing-list provider, next-release art/date, or per-release visual treatments) before implementation.
+- **Not from this list, but shipped anyway:** the All Releases grid now splits into the 4 newest releases (shown directly) and the 7 older ones (collapsed behind a "Show N earlier releases" dropdown), at the artist's request, to keep focus on current material as the catalogue grows.

@@ -183,6 +183,24 @@ The release system previously assumed every track had a Spotify album id. Genera
 
 ---
 
+## 12. Two more releases — "Taking It Well" and "Leave It Till the Morning" (2026-09-19)
+
+Artist released two more YouTube-only singles the same day: **Taking It Well** (`f7NkQbZxwZU`, published 8 min before this entry, newer of the two) and **Leave It Till the Morning** (`1HzFskN_3GY`, published 24 min before). Followed the exact same pattern as item 11:
+
+- `TAKING_IT_WELL` (`genre: 'Drum & Bass'`, `mood: 'Euphoric'` — from the video's own `#DrumAndBass #DnB` tags and description's "euphoric vocals") became the new `FEATURED` release, since it's the most recent of all releases.
+- `LEAVE_IT_TILL_THE_MORNING` (`genre: 'Alternative'`, `mood: 'Heartbreak'` — from `#alternativemusic #HeartbreakSong`) and `BREAK_THE_FRAME` both moved into the regular `RELEASES` grid, same reference pattern as before.
+- Cover art: the artist had already generated proper 1:1 covers for both (found in Downloads, `ChatGPT Image Sep 19, 2026, 11_58_12 AM.png` for Taking It Well, `11_42_35 AM.png` for Leave It Till the Morning) — used those directly, no compositing needed this time.
+- Full-track samples: `Taking It Well (Extended remix).mp3` and `Leave It Till Morning.mp3` from Downloads. The "(Extended remix)" filename is misleading — its duration (257.8s) matches the YouTube upload (4:17–4:18) almost exactly, so it's the same track, not a different edit; used as-is.
+- Stats `Releases` bumped `9+` → `11+` (11 tracks total now).
+
+**Visuals section upgraded from one hardcoded tile to a real 3-video gallery** (improvement-ideas doc item 3, previously only partial) — now data-driven from a `VIDEOS` array (title, YouTube id, thumbnail), showing Taking It Well, Leave It Till the Morning and Break the Frame, each linking to its own video. Uses only real, already-available thumbnails — no new assets invented.
+
+**All Releases split into recent + collapsible "earlier releases"** (same day, follow-up): with 11 tracks now, the artist asked to keep focus on the newest ones and hide older ones behind a dropdown. The grid now shows the 4 newest releases (`RECENT_COUNT = 4`: Taking It Well, Leave It Till the Morning, Break the Frame, Spent It Right — everything released today) directly; the other 7 sit inside a native `<details>`/`<summary>` dropdown labeled "Show 7 earlier releases," closed by default, styled to match the site's pill buttons. Cards inside the dropdown work identically to the visible ones (same click-to-preview modal). Bump `RECENT_COUNT` in `index.html` as more releases land.
+
+- [x] Applied
+
+---
+
 ## Not changing
 
 - Visual design. Dark, technical and precise reads as "producer" more than "drum and bass" — the words were doing the pinning, not the styling.
