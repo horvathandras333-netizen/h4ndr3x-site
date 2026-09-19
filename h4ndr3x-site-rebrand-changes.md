@@ -161,6 +161,26 @@ Unrelated to the rebrand, but live on the page now.
 
 ---
 
+## 11. First YouTube-only release — "Break the Frame" (2026-09-19)
+
+New single, published today on YouTube (`KJ9i0ow6Eyw`), not yet on Spotify. Made it the new `FEATURED` release; `SPENT IT RIGHT` moved into `RELEASES` as a regular (non-featured) card by reference — same pattern as item 10.
+
+The release system previously assumed every track had a Spotify album id. Generalized it:
+
+- Any release can now carry `id` (Spotify) **or** `youtubeId` (YouTube), instead of requiring `id`.
+- Featured "Preview" and the release-details modal play whichever is present — Spotify embed if `id`, YouTube embed if `youtubeId`.
+- The modal's "Open in Spotify" button is hidden entirely for a release with no `id`, rather than pointing at a broken link.
+- "YouTube" buttons/links point at that release's specific video when `youtubeId` is set, falling back to the general channel videos page otherwise.
+- Cover art: no dedicated square art existed, so the official YouTube thumbnail (16:9) was downloaded and composited onto a square canvas with a blurred, darkened fill rather than hard-cropped — a straight crop would have clipped the title text baked into the thumbnail. Saved as `assets/cover-break-the-frame.jpg`.
+- Genre/mood tags: set `genre: 'Rap-Rock'` and `mood: 'Defiant'` on this release, using the video's own hashtags (`#RapRock #JRock`) and description (rejecting expectations, defiance) as the source — the artist's own words, not invented. First release to actually use the optional-tag mechanism from item 8.
+- Visuals section's single tile now features this video specifically (own thumbnail + direct link) instead of the generic "visit the channel" tile — a first step on the improvement-ideas doc's item 3.
+- Stats block `Releases` count bumped `8+` → `9+` to match the catalogue.
+- All Releases subtitle changed from "Opens Spotify player inline" (no longer universally true) to "Opens an inline player".
+
+- [x] Applied
+
+---
+
 ## Not changing
 
 - Visual design. Dark, technical and precise reads as "producer" more than "drum and bass" — the words were doing the pinning, not the styling.

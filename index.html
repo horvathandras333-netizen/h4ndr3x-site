@@ -257,7 +257,7 @@
         <div style="display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;">
           <button onclick="playFeatured()" class="btn btn-sm btn-spotify" aria-label="Toggle featured release preview">▶ Preview</button>
           <button onclick="openRelease(FEATURED)" class="btn btn-sm details-btn">Release details</button>
-          <a href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
+          <a id="feat-youtube" href="https://www.youtube.com/@H4NDR3X" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
         </div>
       </div>
     </div>
@@ -273,7 +273,7 @@
       </p>
       <div class="stats" style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">1</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Producer</div></div>
-        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">8+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
+        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">9+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">2026</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Active</div></div>
       </div>
     </div>
@@ -298,7 +298,7 @@
   <!-- ALL RELEASES GRID -->
   <section id="all-releases" class="section" style="padding:60px 32px 80px;">
     <h2 style="font-weight:700;font-size:clamp(24px,3vw,40px);letter-spacing:0.03em;margin:0 0 12px;">All Releases</h2>
-    <p style="color:#5a6474;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 40px;">Click any card to preview · Opens Spotify player inline</p>
+    <p style="color:#5a6474;font-size:12px;letter-spacing:0.18em;text-transform:uppercase;margin:0 0 40px;">Click any card to preview · Opens an inline player</p>
     <div id="releases-grid" class="release-grid" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:28px;perspective:1200px;"></div>
   </section>
 
@@ -310,7 +310,7 @@
     </div>
     <p style="color:#B8C0CC;font-size:14px;margin:0 0 32px;">Visit the H4NDR3X channel for the latest videos and visualisers.</p>
     <div class="video-list" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:28px;">
-      <a id="featured-video" href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="vid-tile" aria-label="Open the H4NDR3X YouTube channel in a new tab" style="background:linear-gradient(150deg,rgba(5,5,5,0.25),rgba(5,5,5,0.88)),url('assets/og-h4ndr3x.jpg') center/cover;">
+      <a id="featured-video" href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="vid-tile" aria-label="Open the H4NDR3X YouTube channel in a new tab" style="background:linear-gradient(150deg,rgba(5,5,5,0.25),rgba(5,5,5,0.88)),url('assets/video-break-the-frame.jpg') center/cover;">
         <span class="vid-grid" aria-hidden="true"></span>
         <span class="vid-play" aria-hidden="true">▶</span>
         <span id="featured-video-label" class="vid-label">Visit H4NDR3X on YouTube ↗</span>
@@ -388,11 +388,14 @@
 </dialog>
 
 <script>
-  // ---- Single source of truth for releases (cover, title, meta, Spotify album id) ----
-  var FEATURED = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
+  // ---- Single source of truth for releases (cover, title, meta, and either a Spotify album id or a YouTube video id) ----
+  var BREAK_THE_FRAME = { youtubeId: 'KJ9i0ow6Eyw', cover: 'assets/cover-break-the-frame.jpg', title: 'BREAK THE FRAME', meta: 'Single — 2026 · YouTube', accent: '#5EC8FF', genre: 'Rap-Rock', mood: 'Defiant' };
+  var SPENT_IT_RIGHT = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
+  var FEATURED = BREAK_THE_FRAME;
   // FEATURED is included by reference so its All Releases card stays in sync with the featured card.
   var RELEASES = [
-    FEATURED,
+    BREAK_THE_FRAME,
+    SPENT_IT_RIGHT,
     { id: '1RjDDtOqSfshCe4gVxX13D', cover: 'assets/cover-adrenaline.jpg', title: 'ADRENALINE', meta: 'Radio Edit — 2026', accent: '#4AA8FF' },
     { id: '5Jq7sgYSXUt7v03M2wqKc9', cover: 'assets/cover-my-foundation.jpg', title: 'MY FOUNDATION', meta: 'Single — 2026 · Radio Edit', accent: '#87B3FF' },
     { id: '3LTnw7cPkwEOA6KqZA2FCT', cover: 'assets/cover-the-pressure.jpg', title: 'THE PRESSURE', meta: 'Single — 2026', accent: '#B5C2D8' },
@@ -402,8 +405,8 @@
     { id: '5N2JPuFoprTtw9AqT3k4hO', cover: 'assets/cover-brassline.jpg', title: 'BRASSLINE', meta: 'Single — 2026 · Radio Edit', accent: '#73B6E6' }
   ];
   var FEATURED_VIDEO = {
-    url: 'https://www.youtube.com/@H4NDR3X/videos',
-    label: 'Visit H4NDR3X on YouTube ↗'
+    url: 'https://www.youtube.com/watch?v=KJ9i0ow6Eyw',
+    label: 'Watch "Break the Frame" ↗'
   };
 
   // ---- Equalizer bars ----
@@ -437,12 +440,23 @@
     }).join('');
   }
 
+  // ---- Playback source: Spotify if the release has an album id, otherwise YouTube ----
+  function embedSrc(release) {
+    if (release.id) return 'https://open.spotify.com/embed/album/' + release.id + '?utm_source=generator&theme=0';
+    if (release.youtubeId) return 'https://www.youtube.com/embed/' + release.youtubeId + '?autoplay=1&rel=0';
+    return '';
+  }
+  function youtubeUrl(release) {
+    return release.youtubeId ? 'https://www.youtube.com/watch?v=' + release.youtubeId : 'https://www.youtube.com/@H4NDR3X/videos';
+  }
+
   // ---- Featured release ----
   document.getElementById('feat-img').src = FEATURED.cover;
   document.getElementById('feat-img').alt = FEATURED.title + ' — cover art';
   document.getElementById('feat-title').textContent = FEATURED.title;
   document.getElementById('feat-meta').textContent = FEATURED.meta;
   document.getElementById('feat-tags').innerHTML = tagRowHtml(FEATURED);
+  document.getElementById('feat-youtube').href = youtubeUrl(FEATURED);
 
   function playFeatured() {
     var preview = document.getElementById('feat-preview');
@@ -452,7 +466,7 @@
       iframe.src = '';
     } else {
       preview.classList.add('is-open');
-      iframe.src = 'https://open.spotify.com/embed/album/' + FEATURED.id + '?utm_source=generator&theme=0';
+      iframe.src = embedSrc(FEATURED);
     }
   }
   function closeFeatured() {
@@ -495,8 +509,16 @@
     document.getElementById('modal-title').textContent = release.title;
     document.getElementById('modal-meta').textContent = release.meta;
     document.getElementById('modal-tags').innerHTML = tagRowHtml(release);
-    document.getElementById('modal-spotify').href = 'https://open.spotify.com/album/' + release.id;
-    document.getElementById('modal-player').innerHTML = '<iframe title="' + release.title + ' — Spotify preview" src="https://open.spotify.com/embed/album/' + release.id + '?utm_source=generator&theme=0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"></iframe>';
+    var spotifyBtn = document.getElementById('modal-spotify');
+    if (release.id) {
+      spotifyBtn.href = 'https://open.spotify.com/album/' + release.id;
+      spotifyBtn.style.display = '';
+    } else {
+      spotifyBtn.style.display = 'none';
+    }
+    document.getElementById('modal-youtube').href = youtubeUrl(release);
+    var src = embedSrc(release);
+    document.getElementById('modal-player').innerHTML = src ? '<iframe title="' + release.title + ' — preview" src="' + src + '" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"></iframe>' : '';
     modal.showModal();
   }
   function closeReleaseModal() {

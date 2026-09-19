@@ -1,7 +1,7 @@
 # H4NDR3X — artist site
 
-Single-page static site for the drum & bass project **H4NDR3X**.
-Rolling breaks. Subterranean bass. Machine-tight drums, engineered for 3 AM.
+Single-page static site for **H4NDR3X** — a human-led, AI-assisted music
+project with no fixed genre. Machines generate. H4NDR3X decides.
 
 ## Stack
 
@@ -9,7 +9,7 @@ Nothing. One `index.html` with inline CSS and vanilla JS, plus a folder of image
 No build step, no dependencies, no framework. Open the file and it works.
 
 - **Font** — Space Grotesk, from Google Fonts
-- **Players** — Spotify embeds, loaded only on click so nothing third-party runs on page load
+- **Players** — Spotify or YouTube embeds (per release), loaded only on click/open so nothing third-party runs on page load
 - **Motion** — CSS keyframes throughout, all disabled under `prefers-reduced-motion`
 
 ## Run it
@@ -25,11 +25,21 @@ though a server is closer to how it behaves deployed.
 
 Release data lives in one place — the `FEATURED` and `RELEASES` arrays near the top
 of the `<script>` block in `index.html`. The featured card and the "All Releases"
-grid are built from them, and every release opens a Spotify-backed detail dialog.
-Adding a track means adding one object:
+grid are both built from `RELEASES`; give a release its own named `var` (e.g.
+`var SPENT_IT_RIGHT = {...}`) and include that same object in `RELEASES`, so a
+release that's both featured and in the grid can't drift out of sync. Point
+`FEATURED` at whichever release object is currently featured.
+
+Each release needs **either** a Spotify album id **or** a YouTube video id (not
+both are required) — the site plays whichever one is present, and hides the
+"Open in Spotify" button when there isn't one:
 
 ```js
+// Spotify release
 { id: 'SPOTIFY_ALBUM_ID', cover: 'assets/cover-name.jpg', title: 'TITLE', meta: 'Single — 2026' }
+
+// YouTube-only release (no Spotify link yet)
+{ youtubeId: 'YOUTUBE_VIDEO_ID', cover: 'assets/cover-name.jpg', title: 'TITLE', meta: 'Single — 2026 · YouTube' }
 ```
 
 `genre` and `mood` are optional freeform strings — add either (or both) to show
@@ -39,12 +49,15 @@ and no tag renders — no "unclassified" placeholder. H4NDR3X is intentionally
 genre-open, so don't group releases by genre or add filter UI for this until
 the catalogue is much larger.
 
-The `id` is the album ID from a Spotify share link:
-`open.spotify.com/album/<THIS_PART>`. Cover art goes in `assets/` as a square JPG.
+The `id` is the album ID from a Spotify share link (`open.spotify.com/album/<THIS_PART>`);
+the `youtubeId` is the `v=` parameter from a YouTube watch link. Cover art goes
+in `assets/` as a square JPG — for a release whose only art is a 16:9 YouTube
+thumbnail, composite it onto a square canvas (e.g. blurred fill top/bottom)
+rather than hard-cropping it, so text in the thumbnail doesn't get clipped.
 
-The Visuals tile is driven by the `FEATURED_VIDEO` object. When a specific video is
-ready to feature, replace its `url` with the `https://youtu.be/VIDEO_ID` URL and
-update its `label`.
+The Visuals tile is driven by the `FEATURED_VIDEO` object (`url` + `label`) —
+independent from the release data, so it can feature any video regardless of
+which release is currently `FEATURED`.
 
 The mailing-list CTA uses `booking@h4ndr3x.com`; update that `mailto:` link if
 you use a different inbox or add a dedicated mailing-list service. There is no

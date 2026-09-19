@@ -24,6 +24,8 @@ The current release previews sit inside pop-ups, and closing them stops playback
 
 The Visuals section currently contains one tile linking to the YouTube channel. Feature individual music videos or visualisers with their own thumbnails and playback on the site. Three strong videos would make this section feel more substantial. Load video players when selected to keep the page lightweight.
 
+**Partially implemented** (2026-09-19): the single tile now features a specific video ("Break the Frame") with its own thumbnail and a direct link, instead of the generic channel tile. Still just one tile, not a gallery — needs two more videos (with thumbnails) to become the multi-tile gallery this idea describes.
+
 ## 4. Give each song a proper release page
 
 The release pop-ups currently show artwork, basic information and streaming links. Expand them into shareable pages with lyrics, a short story behind the track, available versions and links to that specific song on each platform. Where available, group the radio edit, club mix and instrumental together.
@@ -36,7 +38,7 @@ The equaliser bars currently run on repeating animations independently of playba
 
 H4NDR3X is deliberately genre-open — the catalogue already spans drum and bass, electronic, breakbeat, dark alternative R&B, and Japanese-English anime-inspired tracks, with more genres to come. No fixed genre or predefined label list. Keep the catalogue section as **"All Releases,"** not genre-split. Each track can carry its own optional label(s), freely added, no fixed set. Hold off on filter UI until there are enough releases for it to be useful — the labels alone are enough for now.
 
-**Implemented** (2026-09-19): any release can take optional `genre`/`mood` strings, rendered as tag chips on its card, modal and (if `FEATURED`) the Latest Releases card; nothing shows when absent. See [h4ndr3x-site-rebrand-changes.md](h4ndr3x-site-rebrand-changes.md) item 8. Still blocked on the artist supplying actual per-track labels — that's content, not code.
+**Implemented** (2026-09-19): any release can take optional `genre`/`mood` strings, rendered as tag chips on its card, modal and (if `FEATURED`) the Latest Releases card; nothing shows when absent. See [h4ndr3x-site-rebrand-changes.md](h4ndr3x-site-rebrand-changes.md) item 8. First release to actually use it: "Break the Frame" carries `Rap-Rock` / `Defiant`, taken from the artist's own video description and hashtags (see item 11 in the rebrand doc). The other 8 tracks still have no labels — still blocked on the artist supplying those.
 
 ## 7. Show a little of the creative process
 
@@ -62,6 +64,6 @@ The code already supports per-release accent colours, but most stay within simil
 
 ## Status summary (2026-09-19)
 
-- **Done:** item 1 (section reorder only — no hero redesign), item 6 (label mechanism — no labels added yet).
-- **Partially done:** none beyond the above; item 1's hero-embed variant and item 6's actual per-track labels remain open.
-- **Not started:** items 2, 3, 4, 5, 7, 8, 9, 10 — each needs real assets, content or a service decision from the artist (audio, video, lyrics/process notes, a mailing-list provider, next-release art/date, or per-release visual treatments) before implementation.
+- **Done:** item 6 (label mechanism, plus one release — "Break the Frame" — actually using it).
+- **Partially done:** item 1 (section reorder done, hero-embed variant not attempted), item 3 (one tile now features a real video, not yet a multi-video gallery).
+- **Not started:** items 2, 4, 5, 7, 8, 9, 10 — each needs real assets, content or a service decision from the artist (audio, more videos, lyrics/process notes, a mailing-list provider, next-release art/date, or per-release visual treatments) before implementation.
