@@ -344,8 +344,10 @@
         <p style="margin:14px 0 0;font-size:15px;line-height:1.6;"><a href="mailto:contact@h4ndr3x.com">contact@h4ndr3x.com</a></p>
       </div>
       <div class="contact-actions">
-        <a href="mailto:contact@h4ndr3x.com?subject=Join%20the%20H4NDR3X%20mailing%20list" class="btn btn-spotify">Join mailing list</a>
+        <a href="mailto:contact@h4ndr3x.com" class="btn btn-spotify">Email me</a>
+        <button id="copy-email" type="button" class="btn btn-yt">Copy email</button>
       </div>
+      <p id="contact-status" role="status" style="flex-basis:100%;margin:0;color:#B8C0CC;font-size:14px;line-height:1.6;">Email me opens your email app. You can also copy the address above.</p>
     </div>
   </section>
 
@@ -730,6 +732,17 @@
   document.getElementById('load-embed').addEventListener('click', function () {
     var shell = document.getElementById('embed-shell');
     shell.innerHTML = '<iframe title="Spotify" src="https://open.spotify.com/embed/artist/4HKwa55lGXawLWP4HIoaFa?utm_source=generator&theme=0" width="100%" height="452" frameborder="0" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture" loading="lazy" style="display:block;border:0;"></iframe>';
+  });
+
+  // ---- Contact email clipboard fallback ----
+  document.getElementById('copy-email').addEventListener('click', async function () {
+    var status = document.getElementById('contact-status');
+    try {
+      await navigator.clipboard.writeText('contact@h4ndr3x.com');
+      status.textContent = 'Email address copied: contact@h4ndr3x.com';
+    } catch (error) {
+      status.textContent = 'Copy unavailable. Select contact@h4ndr3x.com above and copy it manually.';
+    }
   });
 
   // ---- Footer year ----
