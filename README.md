@@ -79,7 +79,7 @@ directly and collapses the rest behind a "Show N earlier releases" dropdown,
 so the grid stays focused on current material as the catalogue grows. Bump
 `RECENT_COUNT` in `index.html` as new releases push older ones down.
 
-The mailing-list CTA uses `booking@h4ndr3x.com`; update that `mailto:` link if
+The contact section and mailing-list CTA use `contact@h4ndr3x.com`; update that `mailto:` link if
 you use a different inbox or add a dedicated mailing-list service. There is no
 booking CTA — H4NDR3X does not take bookings.
 
