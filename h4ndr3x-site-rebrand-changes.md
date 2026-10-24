@@ -230,6 +230,20 @@ To feature more or fewer releases, edit the `FEATURED_RELEASES` array — nothin
 
 ---
 
+## 15. Official lyric video — "Leave It Till the Morning" (2026-10-24)
+
+Same track, not a new release and not a remix. The official kinetic-typography lyric video (`sONAa-7M4t4`, published 24 Oct 2026; YouTube title "H4NDR3X - Leave It Till the Morning | Official Lyric Video") is now what the existing `LEAVE_IT_TILL_THE_MORNING` object plays and links to. The original music video (`1HzFskN_3GY`) is unchanged and still in the Visuals gallery.
+
+- One named object, shared by `FEATURED_RELEASES` and `RELEASES`. Moved to `FEATURED_RELEASES[0]` and the front of `RELEASES`, so Latest Releases, the Featured Tracks spotlight, and All Releases all lead with it. No second card. The full-track sample is the same audio.
+- `RECENT_COUNT` stays 4. The recent grid is still Leave It Till the Morning, Taking It Well, Break the Frame, and Spent It Right; the dropdown still reads "Show 9 earlier releases." Stats stay `13+`.
+- Visuals: the lyric video is the first `VIDEOS` tile, titled so it isn't mistaken for the original. Thumbnail is the supplied "I still want you" frame, saved as a 1280×720 JPEG (`assets/video-leave-it-till-the-morning-lyric.jpg`). The release keeps its existing square cover rather than a hard crop — that 1:1 art was already in `assets/`, so the blurred-fill fallback wasn't needed.
+- Tags: the entry already had `mood: 'Heartbreak'`, kept. `genre` updated from `Alternative` (the original video's `#alternativemusic`) to `Dark Alt R&B`, from the lyric video's own "slow, dark alternative R&B" / `#darkrnb`.
+- Short blurb on the featured card and the release modal only. No lyrics pasted in, and the copy does not claim the lyrics are 100% human.
+
+- [x] Applied
+
+---
+
 ## Not changing
 
 - Visual design. Dark, technical and precise reads as "producer" more than "drum and bass" — the words were doing the pinning, not the styling.

@@ -56,6 +56,10 @@ and no tag renders — no "unclassified" placeholder. H4NDR3X is intentionally
 genre-open, so don't group releases by genre or add filter UI for this until
 the catalogue is much larger.
 
+`blurb` is an optional short line about the track. When set, it shows on that
+release's featured card and in its details modal; leave it off and nothing
+renders. Keep it to a sentence or two — don't paste full lyrics here.
+
 `sample` is an optional path to a full-length MP3 (e.g. `assets/audio-name.mp3`)
 — when set, a native `<audio controls>` player labeled "Full track" appears on
 that release's featured card and its modal; leave it off and nothing renders.
