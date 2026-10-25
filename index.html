@@ -118,7 +118,7 @@
   .vid-tile:hover, .vid-tile:focus-visible { border-color:rgba(74,168,255,0.5); transform:translateY(-4px); }
   .vid-grid { position:absolute; inset:0; background-image:linear-gradient(rgba(74,168,255,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(74,168,255,0.05) 1px,transparent 1px); background-size:44px 44px; }
   .vid-play { width:64px; height:64px; border-radius:50%; background:rgba(5,5,5,0.6); backdrop-filter:blur(8px); border:1px solid rgba(102,231,255,0.45); display:flex; align-items:center; justify-content:center; color:#66E7FF; font-size:20px; position:relative; }
-  .vid-label { font-size:11px; letter-spacing:0.26em; text-transform:uppercase; color:#B8C0CC; position:relative; text-align:center; padding:0 16px; line-height:1.45; max-width:100%; }
+  .vid-label { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#F4F6F8; position:relative; text-align:center; padding:8px 14px; line-height:1.45; max-width:calc(100% - 28px); border-radius:10px; background:linear-gradient(180deg, rgba(5,5,5,0.35), rgba(5,5,5,0.72)); box-shadow:0 8px 22px rgba(0,0,0,0.28); }
   .release-blurb { margin:0; max-width:48ch; color:#B8C0CC; font-size:15px; line-height:1.65; }
 
   /* social icons */
@@ -401,8 +401,8 @@
 <script>
   // ---- Single source of truth for releases (cover, title, meta, and either a Spotify album id or a YouTube video id) ----
   var TAKING_IT_WELL = { youtubeId: 'f7NkQbZxwZU', cover: 'assets/cover-taking-it-well.jpg', title: 'TAKING IT WELL', meta: 'Single — 2026 · YouTube', accent: '#FF6FA8', genre: 'Drum & Bass', mood: 'Euphoric', sample: 'assets/audio-taking-it-well.mp3' };
-  // Same song as the original music video (1HzFskN_3GY, still in VIDEOS). This object plays the
-  // official lyric video. The id uses a capital O, not a zero.
+  // Official lyric video. The id uses a capital O, not a zero. The original music
+  // video (1HzFskN_3GY) is not in the Visuals gallery.
   var LEAVE_IT_TILL_THE_MORNING = { youtubeId: 'sONAa-7M4t4', cover: 'assets/cover-leave-it-till-the-morning.jpg', title: 'LEAVE IT TILL THE MORNING', meta: 'Single — 2026 · Lyric video', accent: '#E8B36A', genre: 'Dark Alt R&B', mood: 'Heartbreak', sample: 'assets/audio-leave-it-till-the-morning.mp3', blurb: 'The strange space between losing someone and your body still remembering them. Two people know it\'s over, but for one last night familiarity is stronger than good sense.' };
   var BREAK_THE_FRAME = { youtubeId: 'KJ9i0ow6Eyw', cover: 'assets/cover-break-the-frame.jpg', title: 'BREAK THE FRAME', meta: 'Single — 2026 · YouTube', accent: '#5EC8FF', genre: 'Rap-Rock', mood: 'Defiant', sample: 'assets/audio-break-the-frame.mp3' };
   var SPENT_IT_RIGHT = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
@@ -428,9 +428,8 @@
   ];
   // ---- Videos gallery (Visuals section) ----
   var VIDEOS = [
-    { title: 'Leave It Till the Morning — Lyric Video', youtubeId: 'sONAa-7M4t4', thumb: 'assets/video-leave-it-till-the-morning-lyric.jpg' },
+    { title: 'Leave It Till the Morning (Lyric Video)', youtubeId: 'sONAa-7M4t4', thumb: 'assets/video-leave-it-till-the-morning-lyric.jpg' },
     { title: 'Taking It Well', youtubeId: 'f7NkQbZxwZU', thumb: 'assets/video-taking-it-well.jpg' },
-    { title: 'Leave It Till the Morning', youtubeId: '1HzFskN_3GY', thumb: 'assets/video-leave-it-till-the-morning.jpg' },
     { title: 'Break the Frame', youtubeId: 'KJ9i0ow6Eyw', thumb: 'assets/video-break-the-frame.jpg' }
   ];
 
@@ -738,7 +737,6 @@
       '<span class="vid-grid" aria-hidden="true"></span>' +
       '<span class="vid-play" aria-hidden="true">▶</span>' +
       '<span class="vid-label">' + escapeHtml(video.title) + ' ↗</span>';
-    if (video.title.length > 28) tile.querySelector('.vid-label').style.letterSpacing = '0.12em';
     videoList.appendChild(tile);
   });
 
