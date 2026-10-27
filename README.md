@@ -71,6 +71,15 @@ the `youtubeId` is the `v=` parameter from a YouTube watch link. Cover art goes
 in `assets/` as a square JPG — for a release whose only art is a 16:9 YouTube
 thumbnail, composite it onto a square canvas (e.g. blurred fill top/bottom)
 rather than hard-cropping it, so text in the thumbnail doesn't get clipped.
+Leave `cover` off when the repo has no artwork for that release. The grid, the
+details modal and the Featured Tracks spotlight then use a text panel. Don't
+add logos or artwork that isn't already in the repo.
+
+`appleMusic` and `platforms` are optional full URLs. On a featured card they
+render under a larger Spotify button (`Listen on Spotify` → the album `id`).
+Set `lyricEmbed: true` with `youtubeId` to show that video in the card as a
+lazy `youtube-nocookie.com` embed instead of a click-to-play cover. The details
+modal still prefers the Spotify player when `id` is set.
 
 The Visuals section is a gallery driven by the `VIDEOS` array (`title`,
 `youtubeId`, `thumb`) — independent from the release data, so it can feature

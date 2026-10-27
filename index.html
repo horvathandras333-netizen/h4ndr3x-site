@@ -29,6 +29,12 @@
   "name": "H4NDR3X",
   "url": "https://h4ndr3x.com/",
   "image": "https://h4ndr3x.com/assets/og-h4ndr3x.jpg",
+  "album": {
+    "@type": "MusicAlbum",
+    "name": "Still, you wanted more",
+    "datePublished": "2026-10-25",
+    "url": "https://open.spotify.com/album/3IC3mjIu1uHyCTw0i95q31"
+  },
   "sameAs": [
     "https://open.spotify.com/artist/4HKwa55lGXawLWP4HIoaFa",
     "https://www.youtube.com/@H4NDR3X",
@@ -41,6 +47,7 @@
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body { margin: 0; background: #050505; color: #ffffff; font-family: 'Space Grotesk', sans-serif; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+  [hidden] { display: none !important; }
   a { color: #ffffff; text-decoration: none; transition: color 0.3s ease; }
   a:hover { color: #66E7FF; }
   ::selection { background: #4AA8FF; color: #050505; }
@@ -120,6 +127,19 @@
   .vid-play { width:64px; height:64px; border-radius:50%; background:rgba(5,5,5,0.6); backdrop-filter:blur(8px); border:1px solid rgba(102,231,255,0.45); display:flex; align-items:center; justify-content:center; color:#66E7FF; font-size:20px; position:relative; }
   .vid-label { font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:#F4F6F8; position:relative; text-align:center; padding:8px 14px; line-height:1.45; max-width:calc(100% - 28px); border-radius:10px; background:linear-gradient(180deg, rgba(5,5,5,0.35), rgba(5,5,5,0.72)); box-shadow:0 8px 22px rgba(0,0,0,0.28); }
   .release-blurb { margin:0; max-width:48ch; color:#B8C0CC; font-size:15px; line-height:1.65; }
+  .lyric-frame { position:relative; width:100%; align-self:center; aspect-ratio:16/9; background:#000; }
+  .lyric-frame iframe { position:absolute; inset:0; width:100%; height:100%; border:0; display:block; }
+  .platform-actions { display:flex; flex-direction:column; align-items:flex-start; gap:12px; margin-top:6px; }
+  .platform-secondary { display:flex; flex-wrap:wrap; gap:12px; align-items:center; }
+  .platform-actions > .btn-spotify { max-width:100%; }
+  .cover-fallback { display:flex; align-items:flex-end; background:repeating-linear-gradient(0deg,rgba(255,255,255,0.035) 0 1px,transparent 1px 4px),radial-gradient(circle at 28% 18%,rgba(74,168,255,0.38),transparent 52%),linear-gradient(165deg,#0c1424,#050505 72%); }
+  .cover-fallback-inner { padding:22px; display:flex; flex-direction:column; gap:8px; min-width:0; }
+  .cover-fallback-kicker { font-size:10px; letter-spacing:0.28em; text-transform:uppercase; color:#66E7FF; }
+  .cover-fallback-title { font-weight:600; font-size:22px; letter-spacing:0.02em; line-height:1.15; }
+  .cover-fallback-sub { font-size:11px; letter-spacing:0.18em; text-transform:uppercase; color:#5a6474; }
+  .modal-fallback { width:100%; aspect-ratio:1/1; }
+  .modal-cover[hidden], .modal-fallback[hidden], .spotlight-cover[hidden], .spotlight-mark[hidden] { display:none; }
+  .spotlight-mark { width:56px; height:56px; border-radius:10px; flex:none; display:flex; align-items:center; justify-content:center; color:#66E7FF; background:linear-gradient(160deg,rgba(74,168,255,0.35),rgba(5,5,5,0.9)); border:1px solid rgba(102,231,255,0.3); }
 
   /* social icons */
   .social-row { display:flex; gap:14px; flex-wrap:wrap; justify-content:center; }
@@ -174,8 +194,10 @@
     .contact-panel { padding:42px 28px; }
     .modal-card { grid-template-columns:1fr; }
     .modal-copy { padding:30px 26px 34px; }
-    .modal-cover { max-height:46vh; }
-    .release-modal.has-blurb .modal-cover { max-height:28vh; }
+    .modal-cover, .modal-fallback { max-height:46vh; }
+    .release-modal.has-blurb .modal-cover,
+    .release-modal.has-blurb .modal-fallback { max-height:28vh; }
+    .platform-actions > .btn-spotify { padding:14px 22px; }
   }
 
   @media (max-width: 520px) {
@@ -273,7 +295,7 @@
       </p>
       <div class="stats" style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">1</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Producer</div></div>
-        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">13+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
+        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">14+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">2026</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Active</div></div>
       </div>
     </div>
@@ -283,7 +305,8 @@
   <section id="tracks" class="section" style="padding:100px 32px 60px;">
     <h2 style="font-weight:700;font-size:clamp(30px,4vw,52px);letter-spacing:0.03em;margin:0 0 44px;">Featured Tracks</h2>
     <button type="button" id="tracks-spotlight" class="spotlight-card" aria-label="Open release details">
-      <img id="spotlight-cover" class="spotlight-cover" width="72" height="72" alt="">
+      <img id="spotlight-cover" class="spotlight-cover" width="72" height="72" alt="" hidden>
+      <span id="spotlight-mark" class="spotlight-mark" aria-hidden="true">▶</span>
       <span class="spotlight-copy">
         <span id="spotlight-eyebrow" class="spotlight-eyebrow"></span>
         <span id="spotlight-title" class="spotlight-title"></span>
@@ -382,6 +405,13 @@
   <div class="modal-card">
     <button id="modal-close" type="button" class="close-btn modal-close" aria-label="Close release details">✕</button>
     <img id="modal-cover" class="modal-cover" src="" width="640" height="640" alt="">
+    <div id="modal-fallback" class="cover-fallback modal-fallback" hidden>
+      <div class="cover-fallback-inner">
+        <span class="cover-fallback-kicker">H4NDR3X</span>
+        <span id="modal-fallback-title" class="cover-fallback-title"></span>
+        <span id="modal-fallback-sub" class="cover-fallback-sub"></span>
+      </div>
+    </div>
     <div class="modal-copy">
       <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#66E7FF;">Release details</span>
       <h2 id="modal-title" style="font-weight:700;font-size:clamp(34px,5vw,56px);line-height:1;letter-spacing:0.02em;margin:0;"></h2>
@@ -391,6 +421,8 @@
       <div id="modal-player" class="modal-player"></div>
       <div class="modal-links">
         <a id="modal-spotify" href="#" target="_blank" rel="noopener" class="btn btn-sm btn-spotify">Open in Spotify</a>
+        <a id="modal-apple" class="btn btn-sm btn-yt" hidden>Apple Music</a>
+        <a id="modal-platforms" class="btn btn-sm btn-yt" hidden>All platforms</a>
         <a id="modal-youtube" href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
       </div>
       <div id="modal-sample-wrap" class="sample-wrap">
@@ -409,12 +441,25 @@
   var LEAVE_IT_TILL_THE_MORNING = { youtubeId: 'sONAa-7M4t4', cover: 'assets/video-leave-it-till-the-morning-lyric.jpg', title: 'LEAVE IT TILL THE MORNING', meta: 'Single — 2026 · Lyric video', accent: '#E8B36A', genre: 'Dark Alt R&B', mood: 'Heartbreak', blurb: 'The strange space between losing someone and your body still remembering them. Two people know it\'s over, but for one last night familiarity is stronger than good sense.' };
   var BREAK_THE_FRAME = { youtubeId: 'KJ9i0ow6Eyw', cover: 'assets/cover-break-the-frame.jpg', title: 'BREAK THE FRAME', meta: 'Single — 2026 · YouTube', accent: '#5EC8FF', genre: 'Rap-Rock', mood: 'Defiant', sample: 'assets/audio-break-the-frame.mp3' };
   var SPENT_IT_RIGHT = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
-  // Newest first. Leave It Till the Morning leads because its lyric video (24 Oct 2026) is the
-  // current release. FEATURED (that first entry) also drives the Featured Tracks spotlight.
-  // Each object is included in RELEASES by reference so the cards stay in sync.
-  var FEATURED_RELEASES = [LEAVE_IT_TILL_THE_MORNING, TAKING_IT_WELL, BREAK_THE_FRAME];
+  // Newest single, released 25 Oct 2026. Keep this title's casing and comma.
+  // No cover in assets — the lyric video (SB_iSmfZB3c) is the feature. No genre.
+  var STILL_YOU_WANTED_MORE = {
+    id: '3IC3mjIu1uHyCTw0i95q31',
+    youtubeId: 'SB_iSmfZB3c',
+    lyricEmbed: true,
+    title: 'Still, you wanted more',
+    meta: 'Single — 25 Oct 2026 · Lyric video',
+    accent: '#66E7FF',
+    badge: 'Latest release',
+    appleMusic: 'https://music.apple.com/gb/album/still-you-wanted-more-single/6826878283',
+    platforms: 'https://distrokid.com/hyperfollow/h4ndr3x/still-you-wanted-more'
+  };
+  // Newest first. Still, you wanted more leads. FEATURED (that first entry) also drives
+  // the Featured Tracks spotlight. Each object is included in RELEASES by reference.
+  var FEATURED_RELEASES = [STILL_YOU_WANTED_MORE, LEAVE_IT_TILL_THE_MORNING, TAKING_IT_WELL, BREAK_THE_FRAME];
   var FEATURED = FEATURED_RELEASES[0];
   var RELEASES = [
+    STILL_YOU_WANTED_MORE,
     LEAVE_IT_TILL_THE_MORNING,
     TAKING_IT_WELL,
     BREAK_THE_FRAME,
@@ -431,6 +476,7 @@
   ];
   // ---- Videos gallery (Visuals section) ----
   var VIDEOS = [
+    { title: 'Still, you wanted more (Lyric Video)', youtubeId: 'SB_iSmfZB3c' },
     { title: 'Leave It Till the Morning (Lyric Video)', youtubeId: 'sONAa-7M4t4', thumb: 'assets/video-leave-it-till-the-morning-lyric.jpg' },
     { title: 'Taking It Well', youtubeId: 'f7NkQbZxwZU', thumb: 'assets/video-taking-it-well.jpg' },
     { title: 'Break the Frame', youtubeId: 'KJ9i0ow6Eyw', thumb: 'assets/video-break-the-frame.jpg' }
@@ -491,34 +537,67 @@
     }
   }
 
+  function addExternalLink(parent, href, className, text) {
+    var link = document.createElement('a');
+    link.className = className;
+    link.href = href;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = text;
+    parent.appendChild(link);
+    return link;
+  }
+
   // ---- Featured releases (one glass card per entry in FEATURED_RELEASES) ----
   function buildFeaturedCard(release) {
     var card = document.createElement('div');
     card.className = 'feat-grid';
     card.style.cssText = 'display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:0;border-radius:24px;background:rgba(17,17,17,0.6);backdrop-filter:blur(20px);border:1px solid rgba(255,255,255,0.09);box-shadow:0 30px 80px rgba(0,0,0,0.55), 0 0 60px rgba(74,168,255,0.07);overflow:hidden;margin-bottom:28px;';
 
-    var coverWrap = document.createElement('div');
-    coverWrap.className = 'cover-wrap';
-    var img = document.createElement('img');
-    img.width = 640; img.height = 640; img.loading = 'lazy';
-    img.src = release.cover;
-    img.alt = release.title + ' — cover art';
-    var previewOverlay = document.createElement('div');
-    previewOverlay.className = 'preview-overlay';
-    var iframe = document.createElement('iframe');
-    iframe.title = release.title + ' — preview';
-    iframe.src = '';
-    iframe.width = '100%'; iframe.height = '100%'; iframe.frameBorder = '0';
-    iframe.allow = 'autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture';
-    iframe.style.cssText = 'display:block;border:0;';
-    var closeBtn = document.createElement('button');
-    closeBtn.className = 'close-btn';
-    closeBtn.setAttribute('aria-label', 'Close preview');
-    closeBtn.textContent = '✕';
-    previewOverlay.appendChild(iframe);
-    previewOverlay.appendChild(closeBtn);
-    coverWrap.appendChild(img);
-    coverWrap.appendChild(previewOverlay);
+    var media;
+    var previewBtn = null;
+    var closeBtn = null;
+    var previewOverlay = null;
+    var iframe = null;
+
+    if (release.lyricEmbed && release.youtubeId) {
+      card.classList.add('has-lyric');
+      media = document.createElement('div');
+      media.className = 'lyric-frame';
+      iframe = document.createElement('iframe');
+      iframe.title = release.title + ' — lyric video';
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + release.youtubeId;
+      iframe.loading = 'lazy';
+      iframe.width = 560;
+      iframe.height = 315;
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      media.appendChild(iframe);
+    } else {
+      media = document.createElement('div');
+      media.className = 'cover-wrap';
+      var img = document.createElement('img');
+      img.width = 640; img.height = 640; img.loading = 'lazy';
+      img.src = release.cover;
+      img.alt = release.title + ' — cover art';
+      previewOverlay = document.createElement('div');
+      previewOverlay.className = 'preview-overlay';
+      iframe = document.createElement('iframe');
+      iframe.title = release.title + ' — preview';
+      iframe.src = '';
+      iframe.width = '100%'; iframe.height = '100%'; iframe.frameBorder = '0';
+      iframe.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+      iframe.style.cssText = 'display:block;border:0;';
+      closeBtn = document.createElement('button');
+      closeBtn.className = 'close-btn';
+      closeBtn.setAttribute('aria-label', 'Close preview');
+      closeBtn.textContent = '✕';
+      previewOverlay.appendChild(iframe);
+      previewOverlay.appendChild(closeBtn);
+      media.appendChild(img);
+      media.appendChild(previewOverlay);
+    }
 
     var copy = document.createElement('div');
     copy.className = 'feat-copy';
@@ -526,10 +605,10 @@
 
     var badge = document.createElement('span');
     badge.style.cssText = 'align-self:flex-start;padding:7px 16px;border-radius:100px;border:1px solid rgba(102,231,255,0.35);color:#66E7FF;font-size:11px;letter-spacing:0.24em;text-transform:uppercase;';
-    badge.textContent = 'Featured — Single';
+    badge.textContent = release.badge || 'Featured — Single';
 
     var title = document.createElement('h3');
-    title.style.cssText = 'font-weight:700;font-size:clamp(34px,4vw,56px);line-height:1;letter-spacing:0.02em;margin:0;';
+    title.style.cssText = 'font-weight:700;font-size:clamp(34px,4vw,56px);line-height:1.05;letter-spacing:0.02em;margin:0;';
     title.textContent = release.title;
 
     var meta = document.createElement('p');
@@ -546,28 +625,38 @@
     eq.setAttribute('aria-hidden', 'true');
 
     var btnRow = document.createElement('div');
-    btnRow.style.cssText = 'display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;';
-
-    var previewBtn = document.createElement('button');
-    previewBtn.className = 'btn btn-sm btn-spotify';
-    previewBtn.setAttribute('aria-label', 'Toggle preview for ' + release.title);
-    previewBtn.textContent = '▶ Preview';
-
     var detailsBtn = document.createElement('button');
     detailsBtn.className = 'btn btn-sm details-btn';
     detailsBtn.textContent = 'Release details';
     detailsBtn.addEventListener('click', function () { openRelease(release); });
 
-    var ytLink = document.createElement('a');
-    ytLink.className = 'btn btn-sm btn-yt';
-    ytLink.target = '_blank';
-    ytLink.rel = 'noopener';
-    ytLink.href = youtubeUrl(release);
-    ytLink.textContent = 'YouTube';
+    if (release.lyricEmbed) {
+      btnRow.className = 'platform-actions';
+      if (release.id) addExternalLink(btnRow, 'https://open.spotify.com/album/' + release.id, 'btn btn-spotify', 'Listen on Spotify');
+      var secondary = document.createElement('div');
+      secondary.className = 'platform-secondary';
+      if (release.appleMusic) addExternalLink(secondary, release.appleMusic, 'btn btn-sm btn-yt', 'Apple Music');
+      if (release.platforms) addExternalLink(secondary, release.platforms, 'btn btn-sm btn-yt', 'All platforms');
+      secondary.appendChild(detailsBtn);
+      btnRow.appendChild(secondary);
+    } else {
+      btnRow.style.cssText = 'display:flex;gap:12px;margin-top:6px;flex-wrap:wrap;';
+      previewBtn = document.createElement('button');
+      previewBtn.className = 'btn btn-sm btn-spotify';
+      previewBtn.setAttribute('aria-label', 'Toggle preview for ' + release.title);
+      previewBtn.textContent = '▶ Preview';
 
-    btnRow.appendChild(previewBtn);
-    btnRow.appendChild(detailsBtn);
-    btnRow.appendChild(ytLink);
+      var ytLink = document.createElement('a');
+      ytLink.className = 'btn btn-sm btn-yt';
+      ytLink.target = '_blank';
+      ytLink.rel = 'noopener';
+      ytLink.href = youtubeUrl(release);
+      ytLink.textContent = 'YouTube';
+
+      btnRow.appendChild(previewBtn);
+      btnRow.appendChild(detailsBtn);
+      btnRow.appendChild(ytLink);
+    }
 
     var sampleWrap = document.createElement('div');
     sampleWrap.className = 'sample-wrap';
@@ -585,21 +674,23 @@
       sampleWrap.classList.add('has-sample');
     }
 
-    function closePreview() {
-      previewOverlay.classList.remove('is-open');
-      iframe.src = '';
-    }
-    previewBtn.addEventListener('click', function () {
-      if (previewOverlay.classList.contains('is-open')) {
-        closePreview();
-      } else {
-        previewOverlay.classList.add('is-open');
-        iframe.src = embedSrc(release);
-        sampleAudio.pause();
+    if (previewBtn) {
+      function closePreview() {
+        previewOverlay.classList.remove('is-open');
+        iframe.src = '';
       }
-    });
-    closeBtn.addEventListener('click', closePreview);
-    sampleAudio.addEventListener('play', closePreview);
+      previewBtn.addEventListener('click', function () {
+        if (previewOverlay.classList.contains('is-open')) {
+          closePreview();
+        } else {
+          previewOverlay.classList.add('is-open');
+          iframe.src = embedSrc(release);
+          sampleAudio.pause();
+        }
+      });
+      closeBtn.addEventListener('click', closePreview);
+      sampleAudio.addEventListener('play', closePreview);
+    }
 
     copy.appendChild(badge);
     copy.appendChild(title);
@@ -614,7 +705,7 @@
     copy.appendChild(eq);
     copy.appendChild(btnRow);
     copy.appendChild(sampleWrap);
-    card.appendChild(coverWrap);
+    card.appendChild(media);
     card.appendChild(copy);
 
     buildEqBars(eq, '#66E7FF', 30);
@@ -624,8 +715,18 @@
   FEATURED_RELEASES.forEach(function (release) { featuredList.appendChild(buildFeaturedCard(release)); });
 
   // ---- Featured Tracks spotlight (the Spotify embed below can only show tracks that are actually on Spotify) ----
-  document.getElementById('spotlight-cover').src = FEATURED.cover;
-  document.getElementById('spotlight-cover').alt = FEATURED.title + ' — cover art';
+  var spotlightCover = document.getElementById('spotlight-cover');
+  if (FEATURED.cover) {
+    spotlightCover.hidden = false;
+    spotlightCover.src = FEATURED.cover;
+    spotlightCover.alt = FEATURED.title + ' — cover art';
+    document.getElementById('spotlight-mark').hidden = true;
+  } else {
+    spotlightCover.hidden = true;
+    spotlightCover.removeAttribute('src');
+    spotlightCover.alt = '';
+    document.getElementById('spotlight-mark').hidden = false;
+  }
   document.getElementById('spotlight-eyebrow').textContent = FEATURED.id ? 'Latest release' : 'Latest release — not on Spotify yet';
   document.getElementById('spotlight-title').textContent = FEATURED.title;
   document.getElementById('tracks-spotlight').addEventListener('click', function () { openRelease(FEATURED); });
@@ -637,7 +738,7 @@
   // ---- All-releases grid and detail dialog ----
   // Newest releases show directly; older ones sit behind the "earlier releases" dropdown so the
   // grid stays focused on what's current. Bump RECENT_COUNT as new releases push old ones down.
-  var RECENT_COUNT = 4;
+  var RECENT_COUNT = 5;
   function buildReleaseCard(release) {
     var card = document.createElement('div');
     card.className = 'rel-card';
@@ -645,12 +746,15 @@
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
     card.setAttribute('aria-label', 'Open details for ' + release.title);
+    var coverInner = release.cover
+      ? '<img src="' + release.cover + '" width="640" height="640" alt="' + escapeHtml(release.title) + ' — cover art" loading="lazy">'
+      : '<div class="cover-fallback-inner"><span class="cover-fallback-kicker">H4NDR3X</span><span class="cover-fallback-title">' + escapeHtml(release.title) + '</span><span class="cover-fallback-sub">' + (release.lyricEmbed ? 'Lyric video' : 'Single') + '</span></div>';
     card.innerHTML =
-      '<div class="cover-wrap">' +
-        '<img src="' + release.cover + '" width="640" height="640" alt="' + release.title + ' — cover art" loading="lazy">' +
+      '<div class="cover-wrap' + (release.cover ? '' : ' cover-fallback') + '">' +
+        coverInner +
       '</div>' +
       '<div class="rel-meta">' +
-        '<div><div class="rel-title">' + release.title + '</div><div class="rel-sub">' + release.meta + '</div><div class="tag-row" style="margin-top:8px;">' + tagRowHtml(release) + '</div></div>' +
+        '<div><div class="rel-title">' + escapeHtml(release.title) + '</div><div class="rel-sub">' + escapeHtml(release.meta) + '</div><div class="tag-row" style="margin-top:8px;">' + tagRowHtml(release) + '</div></div>' +
         '<span class="play-btn" aria-hidden="true" style="border-color:' + release.accent + ';color:' + release.accent + '">↗</span>' +
       '</div>';
 
@@ -674,10 +778,38 @@
     document.getElementById('older-releases').style.display = 'none';
   }
 
+  function setOptionalLink(id, url) {
+    var el = document.getElementById(id);
+    if (url) {
+      el.href = url;
+      el.target = '_blank';
+      el.rel = 'noopener';
+      el.hidden = false;
+    } else {
+      el.hidden = true;
+      el.removeAttribute('href');
+      el.removeAttribute('target');
+      el.removeAttribute('rel');
+    }
+  }
+
   var modal = document.getElementById('release-modal');
   function openRelease(release) {
-    document.getElementById('modal-cover').src = release.cover;
-    document.getElementById('modal-cover').alt = release.title + ' — cover art';
+    var modalCover = document.getElementById('modal-cover');
+    var modalFallback = document.getElementById('modal-fallback');
+    if (release.cover) {
+      modalCover.hidden = false;
+      modalCover.src = release.cover;
+      modalCover.alt = release.title + ' — cover art';
+      modalFallback.hidden = true;
+    } else {
+      modalCover.hidden = true;
+      modalCover.removeAttribute('src');
+      modalCover.alt = '';
+      modalFallback.hidden = false;
+      document.getElementById('modal-fallback-title').textContent = release.title;
+      document.getElementById('modal-fallback-sub').textContent = release.lyricEmbed ? 'Lyric video' : 'Single';
+    }
     document.getElementById('modal-title').textContent = release.title;
     document.getElementById('modal-meta').textContent = release.meta;
     document.getElementById('modal-tags').innerHTML = tagRowHtml(release);
@@ -693,6 +825,8 @@
       spotifyBtn.style.display = 'none';
     }
     document.getElementById('modal-youtube').href = youtubeUrl(release);
+    setOptionalLink('modal-apple', release.appleMusic);
+    setOptionalLink('modal-platforms', release.platforms);
     var src = embedSrc(release);
     document.getElementById('modal-player').innerHTML = src ? '<iframe title="' + release.title + ' — preview" src="' + src + '" allow="autoplay;clipboard-write;encrypted-media;fullscreen;picture-in-picture"></iframe>' : '';
     setSample('modal-sample-wrap', 'modal-sample', release);
@@ -735,7 +869,9 @@
     tile.rel = 'noopener';
     tile.className = 'vid-tile';
     tile.setAttribute('aria-label', 'Watch "' + video.title + '" on YouTube');
-    tile.style.background = "linear-gradient(150deg,rgba(5,5,5,0.25),rgba(5,5,5,0.88)),url('" + video.thumb + "') center/cover";
+    tile.style.background = video.thumb
+      ? "linear-gradient(150deg,rgba(5,5,5,0.25),rgba(5,5,5,0.88)),url('" + video.thumb + "') center/cover"
+      : 'linear-gradient(160deg,rgba(11,61,145,0.55),rgba(5,5,5,0.94))';
     tile.innerHTML =
       '<span class="vid-grid" aria-hidden="true"></span>' +
       '<span class="vid-play" aria-hidden="true">▶</span>' +
