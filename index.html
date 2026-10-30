@@ -273,7 +273,7 @@
       </p>
       <div class="stats" style="display:flex;gap:56px;margin-top:8px;justify-content:center;">
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">1</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Producer</div></div>
-        <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">13+</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
+        <div><div id="release-count" style="font-weight:700;font-size:34px;color:#66E7FF;">14</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Releases</div></div>
         <div><div style="font-weight:700;font-size:34px;color:#66E7FF;">2026</div><div style="font-size:11px;letter-spacing:0.22em;text-transform:uppercase;color:#5a6474;margin-top:6px;">Active</div></div>
       </div>
     </div>
@@ -381,7 +381,7 @@
 <dialog id="release-modal" class="release-modal" aria-labelledby="modal-title">
   <div class="modal-card">
     <button id="modal-close" type="button" class="close-btn modal-close" aria-label="Close release details">✕</button>
-    <img id="modal-cover" class="modal-cover" src="" width="640" height="640" alt="">
+    <img id="modal-cover" class="modal-cover" width="640" height="640" alt="">
     <div class="modal-copy">
       <span style="font-size:11px;letter-spacing:0.24em;text-transform:uppercase;color:#66E7FF;">Release details</span>
       <h2 id="modal-title" style="font-weight:700;font-size:clamp(34px,5vw,56px);line-height:1;letter-spacing:0.02em;margin:0;"></h2>
@@ -390,7 +390,7 @@
       <p id="modal-blurb" class="release-blurb" hidden></p>
       <div id="modal-player" class="modal-player"></div>
       <div class="modal-links">
-        <a id="modal-spotify" href="#" target="_blank" rel="noopener" class="btn btn-sm btn-spotify">Open in Spotify</a>
+        <a id="modal-spotify" href="https://open.spotify.com/artist/4HKwa55lGXawLWP4HIoaFa" style="display:none;" target="_blank" rel="noopener" class="btn btn-sm btn-spotify">Open in Spotify</a>
         <a id="modal-youtube" href="https://www.youtube.com/@H4NDR3X/videos" target="_blank" rel="noopener" class="btn btn-sm btn-yt">YouTube</a>
       </div>
       <div id="modal-sample-wrap" class="sample-wrap">
@@ -407,7 +407,7 @@
   // Official lyric video. The id uses a capital O, not a zero. The original music
   // video (1HzFskN_3GY) is not in the Visuals gallery.
   var LEAVE_IT_TILL_THE_MORNING = { youtubeId: 'sONAa-7M4t4', cover: 'assets/video-leave-it-till-the-morning-lyric.jpg', title: 'LEAVE IT TILL THE MORNING', meta: 'Single — 2026 · Lyric video', accent: '#E8B36A', genre: 'Dark Alt R&B', mood: 'Heartbreak', blurb: 'The strange space between losing someone and your body still remembering them. Two people know it\'s over, but for one last night familiarity is stronger than good sense.' };
-  var STILL_YOU_WANTED_MORE = { youtubeId: 'SB_iSmfZB3c', cover: 'assets/video-still-you-wanted-more-lyric.jpg', title: 'STILL, YOU WANTED MORE', meta: 'Single — 2026 · Lyric video', accent: '#FF3D7F' };
+  var STILL_YOU_WANTED_MORE = { id: '3IC3mjIu1uHyCTw0i95q31', youtubeId: 'SB_iSmfZB3c', cover: 'assets/video-still-you-wanted-more-lyric.jpg', title: 'STILL, YOU WANTED MORE', meta: 'Single — 2026 · Lyric video', accent: '#FF3D7F' };
   var BREAK_THE_FRAME = { youtubeId: 'RzP04r3_aws', cover: 'assets/video-break-the-frame-lyric.jpg', title: 'BREAK THE FRAME', meta: 'Single — 2026 · Lyric video', accent: '#5EC8FF', genre: 'Rap-Rock', mood: 'Defiant', sample: 'assets/audio-break-the-frame.mp3' };
   var SPENT_IT_RIGHT = { id: '5WPZ8Lbij8rhMDGtQgddqz', cover: 'assets/cover-spent-it-right.jpg', title: 'SPENT IT RIGHT', meta: 'Single — 2026', accent: '#66E7FF' };
   // Newest first. Still, You Wanted More leads as the newest lyric video. FEATURED (that first entry) also drives the Featured Tracks spotlight.
@@ -437,7 +437,7 @@
     { title: 'Leave It Till the Morning (Lyric Video)', youtubeId: 'sONAa-7M4t4', thumb: 'assets/video-leave-it-till-the-morning-lyric.jpg' },
     { title: 'Break the Frame (Lyric Video)', youtubeId: 'RzP04r3_aws', thumb: 'assets/video-break-the-frame-lyric.jpg' },
     { title: 'Taking It Well', youtubeId: 'f7NkQbZxwZU', thumb: 'assets/video-taking-it-well.jpg' },
-    { title: 'Break the Frame', youtubeId: 'KJ9i0ow6Eyw', thumb: 'assets/video-break-the-frame.jpg' }
+    { title: 'Break the Frame (Original Video)', youtubeId: 'KJ9i0ow6Eyw', thumb: 'assets/video-break-the-frame.jpg' }
   ];
 
   // ---- Equalizer bars ----
@@ -632,6 +632,8 @@
   document.getElementById('spotlight-cover').alt = FEATURED.title + ' — cover art';
   document.getElementById('spotlight-eyebrow').textContent = FEATURED.id ? 'Latest release' : 'Latest release — not on Spotify yet';
   document.getElementById('spotlight-title').textContent = FEATURED.title;
+  // Release count stat stays in sync with the RELEASES array.
+  document.getElementById('release-count').textContent = RELEASES.length;
   document.getElementById('tracks-spotlight').addEventListener('click', function () { openRelease(FEATURED); });
 
   document.getElementById('modal-sample').addEventListener('play', function () {
